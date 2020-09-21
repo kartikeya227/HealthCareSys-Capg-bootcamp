@@ -1,13 +1,13 @@
-package com.capg.bootcamp;
+package com.cg.bootcamp.healthcare;
 
 import org.springframework.boot.SpringApplication;
 import org.springframework.boot.autoconfigure.SpringBootApplication;
 
 @SpringBootApplication
-public class BootcampApplication {
+public class HealthcareApplication {
 
     public static void main(String[] args) {
-        SpringApplication.run(BootcampApplication.class, args);
+        SpringApplication.run(HealthcareApplication.class, args);
     }
 
 }

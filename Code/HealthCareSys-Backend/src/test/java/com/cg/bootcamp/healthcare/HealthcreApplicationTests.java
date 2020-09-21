@@ -1,10 +1,10 @@
-package com.capg.bootcamp;
+package com.cg.bootcamp.healthcare;
 
 import org.junit.jupiter.api.Test;
 import org.springframework.boot.test.context.SpringBootTest;
 
 @SpringBootTest
-class BootcampApplicationTests {
+class HealthcreApplicationTests {
 
     @Test
     void contextLoads() {
