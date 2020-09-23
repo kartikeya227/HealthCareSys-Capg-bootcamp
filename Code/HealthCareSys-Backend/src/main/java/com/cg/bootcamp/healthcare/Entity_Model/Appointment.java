@@ -9,42 +9,48 @@ import java.sql.Timestamp;
 @Table(name = "Appointment")
 public class Appointment {
     @Id
-    @SequenceGenerator(name = "Appointment_SEQ",sequenceName = "ap_seq",
-            initialValue = 10001, allocationSize = 1)
-    @GeneratedValue(strategy = GenerationType.SEQUENCE, generator = "Appointment_SEQ")
+    @GeneratedValue(strategy = GenerationType.AUTO)
     @Column(name = "Appointment_ID", nullable = false)
-    private String appointmentId;
+    private int appointmentId;
 
     @NotNull()
-    @OneToOne(cascade = {CascadeType.ALL})
-    @JoinColumn(name = "User_FK")
+    @ManyToOne
+    @JoinColumn(name = "User_Id")
     private User user;
 
     @NotNull()
-
-    @OneToOne(cascade = {CascadeType.ALL})
-    @JoinColumn(name = "DC_FK")
+    @ManyToOne
+    @JoinColumn(name = "Center_Id")
     private DiagnosticCenter diagnosticCenter;
 
     @NotNull()
-    @OneToOne(cascade = {CascadeType.ALL})
-    @JoinColumn(name = "TEST_FK_AP")
+    @ManyToOne
+    @JoinColumn(name = "Test_ID")
     private Test test;
 
-    @NotNull()
-    @Column(name = "Date", nullable = false)
-    private java.sql.Timestamp dateTime;
+//    @NotNull()
+//    @Column(name = "Date", nullable = false)
+//    private java.sql.Timestamp dateTime;
 
     @NotNull()
-    @Column(name = "User", nullable = false)
     private boolean approved;
 
+    @Override
+    public String toString() {
+        return "Appointment{" +
+                "appointmentId=" + appointmentId +
+                ", user=" + user +
+                ", diagnosticCenter=" + diagnosticCenter +
+                ", test=" + test +
+                ", approved=" + approved +
+                '}';
+    }
 
-    public String getAppointmentId() {
+    public int getAppointmentId() {
         return appointmentId;
     }
 
-    public void setAppointmentId(String appointmentId) {
+    public void setAppointmentId(int appointmentId) {
         this.appointmentId = appointmentId;
     }
 
@@ -72,14 +78,6 @@ public class Appointment {
         this.test = test;
     }
 
-    public Timestamp getDateTime() {
-        return dateTime;
-    }
-
-    public void setDateTime(Timestamp dateTime) {
-        this.dateTime = dateTime;
-    }
-
     public boolean isApproved() {
         return approved;
     }
@@ -87,5 +85,4 @@ public class Appointment {
     public void setApproved(boolean approved) {
         this.approved = approved;
     }
-
 }

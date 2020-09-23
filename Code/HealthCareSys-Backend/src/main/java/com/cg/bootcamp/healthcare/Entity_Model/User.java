@@ -9,7 +9,7 @@ import javax.persistence.*;
 public class User {
     @Id
     @GeneratedValue(strategy = GenerationType.AUTO)
-    @Column(name = "User_ID", nullable = false)
+    @Column(name = "User_Id", nullable = false)
     private int userId;
 
     @NotNull()
@@ -31,6 +31,18 @@ public class User {
     @NotNull()
     @Column(name = "EmailId", nullable = false)
     private String emailId;
+
+    @Override
+    public String toString() {
+        return "User{" +
+                "userId=" + userId +
+                ", userName='" + userName + '\'' +
+                ", password='" + password + '\'' +
+                ", contactNumber='" + contactNumber + '\'' +
+                ", userRole='" + userRole + '\'' +
+                ", emailId='" + emailId + '\'' +
+                '}';
+    }
 
     public int getUserId() {
         return userId;

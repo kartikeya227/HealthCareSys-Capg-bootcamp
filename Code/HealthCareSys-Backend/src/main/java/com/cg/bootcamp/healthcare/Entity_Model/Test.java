@@ -17,6 +17,19 @@ public class Test {
     @Column(name = "Test_Name", nullable = false)
     private String testName;
 
+    @NotNull()
+    @Column(name = "Test_Doctor", nullable = false)
+    private String testDoctor;
+
+    @Override
+    public String toString() {
+        return "Test{" +
+                "testId=" + testId +
+                ", testName='" + testName + '\'' +
+                ", testDoctor='" + testDoctor + '\'' +
+                '}';
+    }
+
     public int getTestId() {
         return testId;
     }
@@ -31,5 +44,13 @@ public class Test {
 
     public void setTestName(String testName) {
         this.testName = testName;
+    }
+
+    public String getTestDoctor() {
+        return testDoctor;
+    }
+
+    public void setTestDoctor(String testDoctor) {
+        this.testDoctor = testDoctor;
     }
 }

@@ -6,39 +6,43 @@ import javax.persistence.*;
 import java.util.List;
 
 @Entity
-@Table(name = "DiagnosticCenter")
+@Table(name = "Diagnostic_Center")
 public class DiagnosticCenter {
 
     @Id
-    @SequenceGenerator(name = "DiagnosticCenter_SEQ",sequenceName = "dc_seq",
-            initialValue = 10001, allocationSize = 1)
-    @GeneratedValue(strategy = GenerationType.SEQUENCE, generator = "DiagnosticCenter_SEQ")
-    @Column(name = "Center_ID", nullable = false)
-    private String centerId;
+    @GeneratedValue(strategy = GenerationType.AUTO)
+    @Column(name = "Center_Id", nullable = false)
+    private int centerId;
 
     @NotNull()
     @Column(name = "Center_Name", nullable = false)
     private String centerName;
 
     @NotNull()
-    @Column(name = "List_of_Tests", nullable = false)
-    @OneToMany(cascade = {CascadeType.ALL})
-    @JoinColumn(name = "Test_FK")
-    @OrderColumn(name="Seq_FK")
-    private List<Test> testList;
+    @Column(name = "Center_Address", nullable = false)
+    private String centerAddrress;
 
     @NotNull()
-    @Column(name = "List_of_Appointments", nullable = false)
     @OneToMany(cascade = {CascadeType.ALL})
-    @JoinColumn(name = "Appointment_FK")
-    @OrderColumn(name="Seq_FK")
-    private List<Test> appointmentList;
+    @JoinColumn(name = "Test_C_ID")
+    @OrderColumn(name="Test_FK")
+    private List<Test> testList;
 
-    public String getCenterId() {
+    @Override
+    public String toString() {
+        return "DiagnosticCenter{" +
+                "centerId=" + centerId +
+                ", centerName='" + centerName + '\'' +
+                ", centerAddrress='" + centerAddrress + '\'' +
+                ", testList=" + testList +
+                '}';
+    }
+
+    public int getCenterId() {
         return centerId;
     }
 
-    public void setCenterId(String centerId) {
+    public void setCenterId(int centerId) {
         this.centerId = centerId;
     }
 
@@ -50,19 +54,19 @@ public class DiagnosticCenter {
         this.centerName = centerName;
     }
 
+    public String getCenterAddrress() {
+        return centerAddrress;
+    }
+
+    public void setCenterAddrress(String centerAddrress) {
+        this.centerAddrress = centerAddrress;
+    }
+
     public List<Test> getTestList() {
         return testList;
     }
 
     public void setTestList(List<Test> testList) {
         this.testList = testList;
-    }
-
-    public List<Test> getAppointmentList() {
-        return appointmentList;
-    }
-
-    public void setAppointmentList(List<Test> appointmentList) {
-        this.appointmentList = appointmentList;
     }
 }
