@@ -32,12 +32,12 @@ public class AppointmentService implements AppointmentDao {
 
     @Override
     public List<Appointment> viewAllAppointmentByUser(int userId) {
-        return null;
+        return appointmentRepository.findAllAppointmentByUser(userId);
     }
 
     @Override
     public List<Appointment> viewAllAppointmentByDiagnosticCenter(int centerId) {
-        return null;
+        return appointmentRepository.findAllAppointmentByDiagnosticCenter(centerId);
     }
 
     @Override
@@ -52,6 +52,5 @@ public class AppointmentService implements AppointmentDao {
 
     @Override
     public void approveAppointment(int appointmentId) {
-
     }
 }

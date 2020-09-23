@@ -28,6 +28,20 @@ public class AppointmentController {
     public List<Appointment> viewAllAppointment() {
         return appointmentService.viewAllAppointment();
     }
+    /**
+     *
+     * */
+    @GetMapping("/byuser/{id}")
+    public List<Appointment> viewAllAppointmentByUser(@PathVariable("id") int userId) {
+        return appointmentService.viewAllAppointmentByUser(userId);
+    }
+    /**
+     *
+     * */
+    @GetMapping("/bycenter/{id}")
+    public List<Appointment> viewAllAppointmentByDiagnosticCenter(@PathVariable("id") int centerId) {
+        return appointmentService.viewAllAppointmentByDiagnosticCenter(centerId);
+    }
 
     /**
      * Get Http Request
@@ -86,6 +100,25 @@ public class AppointmentController {
         Optional<Appointment> findById = appointmentService.findAppointment(appointmentId);
         try {
             if (findById.isPresent()) {
+                appointmentService.updateAppointment(appointment);
+                return new ResponseEntity<Appointment>(appointment, HttpStatus.OK);
+            } else {
+                throw new RecordNotFoundException("No appointment  with apointment Id " + appointmentId + " found.");
+            }
+        } catch (RecordNotFoundException e) {
+            return new ResponseEntity(e, HttpStatus.NOT_FOUND);
+        }
+    }
+    /**
+     * Put Http Request
+     * */
+    @PutMapping("/approve/{id}")
+    public ResponseEntity<Appointment> updateDiagnosticCenter(@PathVariable("id") int appointmentId) {
+        Optional<Appointment> findById = appointmentService.findAppointment(appointmentId);
+        try {
+            if (findById.isPresent()) {
+                Appointment appointment = findById.get();
+                appointment.setApproved(true);
                 appointmentService.updateAppointment(appointment);
                 return new ResponseEntity<Appointment>(appointment, HttpStatus.OK);
             } else {

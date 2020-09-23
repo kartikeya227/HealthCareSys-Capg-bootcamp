@@ -1,7 +1,9 @@
 package com.cg.bootcamp.healthcare.ControllerLayer;
 
 import com.cg.bootcamp.healthcare.DAO.UserDao;
+import com.cg.bootcamp.healthcare.Entity_Model.DiagnosticCenter;
 import com.cg.bootcamp.healthcare.Entity_Model.User;
+import com.cg.bootcamp.healthcare.Error.RecordNotFoundException;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
@@ -9,6 +11,7 @@ import org.springframework.web.bind.annotation.*;
 
 import javax.validation.Valid;
 import java.util.List;
+import java.util.Optional;
 
 @RestController
 @RequestMapping("/user")
@@ -18,14 +21,78 @@ public class UserController {
     @Autowired
     UserDao userDao;
 
+    /**
+     *
+     * */
     @GetMapping("/all")
-    public List<User> viewAllUser(){
+    public List<User> viewAllUser() {
         return userDao.viewAllUser();
     }
 
-    @PostMapping("/addUser")
-    public ResponseEntity<User> addUser(@Valid @RequestBody User user){
-        userDao.addUser(user);
-        return new ResponseEntity("has been successfully created!", HttpStatus.CREATED);
+    /**
+     * Get Http Request
+     * */
+    @GetMapping("/find/{id}")
+    @ExceptionHandler(RecordNotFoundException.class)
+    public ResponseEntity<User> viewUserById(@PathVariable("id") int userId) {
+        Optional<User> findById = userDao.viewUserById(userId);
+        try {
+            if (findById.isPresent()) {
+                User user = findById.get();
+                return new ResponseEntity<User>(user, HttpStatus.FOUND);
+            } else {
+                throw new RecordNotFoundException("No record found with the provided " + userId + " user Id.");
+            }
+        } catch (RecordNotFoundException e) {
+            return new ResponseEntity(e.getMessage(), HttpStatus.NOT_FOUND);
+        }
+    }
+
+    /**
+     * Post Http Request
+     * */
+    @PostMapping("/add")
+    public ResponseEntity<User> addUser(@Valid @RequestBody User user) {
+        try {
+            userDao.addUser(user);
+            return new ResponseEntity<User>(user, HttpStatus.CREATED);
+        } catch (Exception e) {
+            return new ResponseEntity(e, HttpStatus.IM_USED);
+        }
+    }
+    /**
+     * Delete Http Request
+     * */
+    @DeleteMapping("/delete/{id}")
+    public ResponseEntity<User> deleteUser(@PathVariable("id") int userId) {
+        Optional<User> findById = userDao.viewUserById(userId);
+        try {
+            if (findById.isPresent()) {
+                userDao.deleteUser(userId);
+                return new ResponseEntity(findById, HttpStatus.OK);
+            } else {
+                throw new RecordNotFoundException("No user account with user Id " + userId + " found.");
+            }
+        } catch (RecordNotFoundException e) {
+            return new ResponseEntity(e, HttpStatus.NOT_FOUND);
+        }
+    }
+
+    /**
+     * Put Http Request
+     * */
+    @PutMapping("/update/{id}")
+    public ResponseEntity<User> updateDiagnosticCenter(@Valid @RequestBody User user, @PathVariable("id") int userId) {
+        Optional<User> findById = userDao.viewUserById(userId);
+        try {
+            if (findById.isPresent()) {
+                userDao.updateUser(user);
+                return new ResponseEntity<User>(user, HttpStatus.OK);
+            } else {
+                throw new RecordNotFoundException("No user account with user Id " + userId +" found.");
+            }
+        } catch (RecordNotFoundException e) {
+            return new ResponseEntity(e, HttpStatus.NOT_FOUND);
+        }
     }
 }
