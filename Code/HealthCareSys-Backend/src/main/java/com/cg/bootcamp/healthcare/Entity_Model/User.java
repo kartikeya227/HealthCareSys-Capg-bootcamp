@@ -16,49 +16,24 @@ public class User {
     private int userId;
 
     @NotNull()
-    @Pattern(regexp = "(^[A-Za-z\\s]{1,}[\\.]{0,1}[A-Za-z\\s]{0,}$)")
     @Column(name = "User_Name", nullable = false)
-    private String userName;
+    private String username;
 
-    /**
-     *  It contains at least 8 characters and at most 20 characters.
-     *     It contains at least one digit.
-     *     It contains at least one upper case alphabet.
-     *     It contains at least one lower case alphabet.
-     *     It contains at least one special character which includes !@#$%&*()-+=^.
-     *     It doesn’t contain any white space.
-     */
     @NotNull()
-    @Pattern(regexp="(^.*(?=.{8,})(?=..*[0-9])(?=.*[a-z])(?=.*[A-Z])(?=.*[@#$%^&+=]).*$)", message = "error")
     @Column(name = "Password", nullable = false)
     private String password;
 
-    @Pattern(regexp="(^$|[0-9]{10})")
     @NotNull()
     @Column(name = "Contact_number", nullable = false)
     private String contactNumber;
-
 
     @NotNull()
     @Column(name = "User_Role", nullable = false)
     private String userRole;
 
     @NotNull()
-    @Email
     @Column(name = "EmailId", nullable = false)
     private String emailId;
-
-    @Override
-    public String toString() {
-        return "User{" +
-                "userId=" + userId +
-                ", userName='" + userName + '\'' +
-                ", password='" + password + '\'' +
-                ", contactNumber='" + contactNumber + '\'' +
-                ", userRole='" + userRole + '\'' +
-                ", emailId='" + emailId + '\'' +
-                '}';
-    }
 
     public int getUserId() {
         return userId;
@@ -68,12 +43,12 @@ public class User {
         this.userId = userId;
     }
 
-    public String getUserName() {
-        return userName;
+    public String getUsername() {
+        return username;
     }
 
-    public void setUserName(String userName) {
-        this.userName = userName;
+    public void setUsername(String username) {
+        this.username = username;
     }
 
     public String getPassword() {
