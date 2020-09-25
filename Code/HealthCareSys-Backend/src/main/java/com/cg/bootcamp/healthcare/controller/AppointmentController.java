@@ -1,7 +1,7 @@
 package com.cg.bootcamp.healthcare.controller;
 
-import com.cg.bootcamp.healthcare.model.Appointment;
 import com.cg.bootcamp.healthcare.exceptions.RecordNotFoundException;
+import com.cg.bootcamp.healthcare.model.Appointment;
 import com.cg.bootcamp.healthcare.service.AppointmentService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
@@ -21,7 +21,9 @@ public class AppointmentController {
     AppointmentService appointmentService;
 
     /**
-     *
+     * Http Method : GET
+     * Returns a list of all the appointments across all the diagnostic centers.
+     * If no appointment is made in either of the centers returns a empty list.
      */
     @GetMapping("/all")
     public List<Appointment> viewAllAppointment() {
@@ -29,7 +31,10 @@ public class AppointmentController {
     }
 
     /**
-     *
+     *Http Method : GET
+     * Returns a list of all the appointments made by a particular user.
+     * If no appointment is made by the user returns a empty list.
+     * Takes user Id as input through path variable
      */
     @GetMapping("/byuser/{id}")
     public List<Appointment> viewAllAppointmentByUser(@PathVariable("id") int userId) {
@@ -37,7 +42,10 @@ public class AppointmentController {
     }
 
     /**
-     *
+     *Http Method : GET
+     * Returns a list of all the appointments made under a particular diagnostic center.
+     * If no appointment is made under particular diagnostic center returns a empty list.
+     * Takes user Id as input through path variable
      */
     @GetMapping("/bycenter/{id}")
     public List<Appointment> viewAllAppointmentByDiagnosticCenter(@PathVariable("id") int centerId) {
@@ -45,7 +53,12 @@ public class AppointmentController {
     }
 
     /**
-     * Get Http Request
+     *Http Method : GET
+     * Returns a single appointment by searching appointments table with appointment id.
+     * If no appointment is present with that appointment id then return a error msg..
+     * Takes user Id as input through path variable.
+     * success code FOUND.
+     * Fail code NOT FOUND.
      */
     @GetMapping("/find/{id}")
     @ExceptionHandler(RecordNotFoundException.class)
@@ -64,7 +77,11 @@ public class AppointmentController {
     }
 
     /**
-     * Post Http Request
+     * Http Method : POST
+     * Adds a new appointment to the database.
+     * Takes appointment object in HTTP request body.
+     * success code CREATED.
+     * Fail code NOT BAD_REQUEST.
      */
     @PostMapping("/add")
     public ResponseEntity<Appointment> addAppointment(@Valid @RequestBody Appointment appointment) {
@@ -77,7 +94,13 @@ public class AppointmentController {
     }
 
     /**
-     * Delete Http Request
+     * Http Method : DELETE
+     * Deletes a appointment from the database.
+     * Takes appointment id as a path variable.
+     * First checks if a appointment is present in the database with the provided
+     * appointment id or not, if present deletes the appointment, else fires NOT_FOUND status.
+     * success code OK.
+     * Fail code NOT NOT_FOUND.
      */
     @DeleteMapping("/delete/{id}")
     public ResponseEntity<Appointment> deleteAppointment(@PathVariable("id") int appointmentId) {
@@ -95,7 +118,14 @@ public class AppointmentController {
     }
 
     /**
-     * Put Http Request
+     * Http Method : PUT
+     * Updates a appointment already present in the database.
+     * Takes appointment id as a path variable.
+     * Takes appointment to be updated as a JASON object in HTTP request body
+     * First checks if a appointment is present in the database with the provided
+     * appointment id or not, if present Updates it with the new appointment, else fires NOT_FOUND status.
+     * success code OK.
+     * Fail code NOT NOT_FOUND.
      */
     @PutMapping("/update/{id}")
     public ResponseEntity<Appointment> updateAppointment(@Valid @RequestBody Appointment appointment, @PathVariable("id") int appointmentId) {
@@ -113,7 +143,13 @@ public class AppointmentController {
     }
 
     /**
-     * Put Http Request
+     * Http Method : PUT
+     * Approves a appointment already present in the database.
+     * Takes appointment id as a path variable.
+     * First checks if a appointment is present in the database with the provided
+     * appointment id or not, if present approves the appointment, else fires NOT_FOUND status.
+     * success code OK.
+     * Fail code NOT NOT_FOUND.
      */
     @PutMapping("/approve/{id}")
     public ResponseEntity<Appointment> approveAppointment(@PathVariable("id") int appointmentId) {

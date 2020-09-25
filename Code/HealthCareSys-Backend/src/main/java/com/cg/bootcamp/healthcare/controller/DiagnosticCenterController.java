@@ -1,8 +1,8 @@
 package com.cg.bootcamp.healthcare.controller;
 
 
-import com.cg.bootcamp.healthcare.model.DiagnosticCenter;
 import com.cg.bootcamp.healthcare.exceptions.RecordNotFoundException;
+import com.cg.bootcamp.healthcare.model.DiagnosticCenter;
 import com.cg.bootcamp.healthcare.service.DiagnosticCenterService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;

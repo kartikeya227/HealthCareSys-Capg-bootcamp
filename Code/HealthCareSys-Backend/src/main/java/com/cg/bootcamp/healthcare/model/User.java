@@ -1,6 +1,9 @@
 package com.cg.bootcamp.healthcare.model;
 
-import com.cg.bootcamp.healthcare.exceptions.*;
+import com.cg.bootcamp.healthcare.exceptions.InvalidAgeException;
+import com.cg.bootcamp.healthcare.exceptions.InvalidContactException;
+import com.cg.bootcamp.healthcare.exceptions.InvalidEmailException;
+import com.cg.bootcamp.healthcare.exceptions.InvalidNameException;
 import com.sun.istack.NotNull;
 
 import javax.persistence.*;
@@ -34,11 +37,11 @@ public class User {
     private String userRole;
 
     @NotNull()
-    @Column(name="User_Age")
+    @Column(name = "User_Age")
     private int userAge;
 
     @NotNull()
-    @Column(name="User_Gender")
+    @Column(name = "User_Gender")
     private String userGender;
 
     @NotNull()
@@ -75,7 +78,7 @@ public class User {
 
     public void setContactNumber(String contactNumber) throws InvalidContactException {
         String regexName = "^[1-9][0-9]{9}$";
-        if(!contactNumber.matches(regexName))
+        if (!contactNumber.matches(regexName))
             throw new InvalidContactException("Invalid contact number entered.");
         this.contactNumber = contactNumber;
     }
@@ -95,7 +98,7 @@ public class User {
     public void setEmailId(String emailId) throws InvalidEmailException {
 
         String regexName = "^([a-zA-Z0-9_\\-\\.]+)@([a-zA-Z0-9_\\-\\.]+)\\.([a-zA-Z]{2,5})$";
-        if(!emailId.matches(regexName))
+        if (!emailId.matches(regexName))
             throw new InvalidEmailException("Invalid Email entered.");
 
         this.emailId = emailId;
@@ -105,12 +108,12 @@ public class User {
         return fullName;
     }
 
-    public void setFullName(String fullName)throws InvalidNameException {
+    public void setFullName(String fullName) throws InvalidNameException {
 
         String regexName = "\\p{Upper}(\\p{Lower}+\\s?)";
         String patternName = "(" + regexName + "){2,3}";
 
-        if(!fullName.matches(patternName))
+        if (!fullName.matches(patternName))
             throw new InvalidNameException("Invalid user full name Format");
 
         this.fullName = fullName;
@@ -121,7 +124,7 @@ public class User {
     }
 
     public void setUserAge(int userAge) throws InvalidAgeException {
-        if(userAge<=0 || userAge>100)
+        if (userAge <= 0 || userAge > 100)
             throw new InvalidAgeException("Invalid age entered, age can only be between 1-100.");
         this.userAge = userAge;
     }

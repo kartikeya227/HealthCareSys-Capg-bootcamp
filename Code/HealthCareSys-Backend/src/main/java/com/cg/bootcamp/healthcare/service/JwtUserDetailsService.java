@@ -22,20 +22,20 @@ public class JwtUserDetailsService implements UserDetailsService {
 
     @Override
     public UserDetails loadUserByUsername(String username) throws UsernameNotFoundException {
-        try{
+        try {
             User user = userRepository.findByUsername(username);
             if (user == null) {
                 throw new UsernameNotFoundException("User not found with username: " + username);
             }
             return new org.springframework.security.core.userdetails.User(user.getUsername(), user.getPassword(),
                     new ArrayList<>());
+        } catch (Exception e) {
         }
-        catch (Exception e){}
         return null;
     }
 
     public User save(User user) {
-        try{
+        try {
             User newUser = new User();
             newUser.setUsername(user.getUsername());
             newUser.setFullName(user.getFullName());
@@ -46,8 +46,7 @@ public class JwtUserDetailsService implements UserDetailsService {
             newUser.setUserAge(user.getUserAge());
             newUser.setUserGender(user.getUserGender());
             return userRepository.save(newUser);
-        }
-        catch (Exception e){
+        } catch (Exception e) {
             return null;
         }
     }

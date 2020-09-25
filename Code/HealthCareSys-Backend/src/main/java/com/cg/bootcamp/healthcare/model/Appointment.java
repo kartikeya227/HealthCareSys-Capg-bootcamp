@@ -9,36 +9,30 @@ import java.util.Date;
 @Entity
 @Table(name = "Appointment")
 public class Appointment {
-    @Id
-    @GeneratedValue(strategy = GenerationType.AUTO)
-    @Column(name = "Appointment_ID", nullable = false)
-    private int appointmentId;
-
-    @NotNull()
-    @ManyToOne
-    @JoinColumn(name = "User_Id")
-    private User user;
-
-    @NotNull()
-    @ManyToOne
-    @JoinColumn(name = "Center_Id")
-    private DiagnosticCenter diagnosticCenter;
-
-    @NotNull()
-    @ManyToOne
-    @JoinColumn(name = "Test_ID")
-    private Test test;
-
     @NotNull
     @Temporal(TemporalType.DATE)
     @DateTimeFormat(style = "yyyy-MM-dd")
     Date appointmentDate;
-
     @NotNull
     @Temporal(TemporalType.TIME)
     @DateTimeFormat(style = "hh:mm")
     Date AppointmentTime;
-
+    @Id
+    @GeneratedValue(strategy = GenerationType.AUTO)
+    @Column(name = "Appointment_ID", nullable = false)
+    private int appointmentId;
+    @NotNull()
+    @ManyToOne
+    @JoinColumn(name = "User_Id")
+    private User user;
+    @NotNull()
+    @ManyToOne
+    @JoinColumn(name = "Center_Id")
+    private DiagnosticCenter diagnosticCenter;
+    @NotNull()
+    @ManyToOne
+    @JoinColumn(name = "Test_ID")
+    private Test test;
     @NotNull()
     private boolean approved;
 

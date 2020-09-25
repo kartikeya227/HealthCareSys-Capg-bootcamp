@@ -1,31 +1,21 @@
 package com.cg.bootcamp.healthcare.controller;
 
-import com.cg.bootcamp.healthcare.model.Appointment;
-import org.junit.jupiter.api.Test;
-import org.junit.jupiter.api.Assertions;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
-import org.slf4j.Logger;
-import org.slf4j.LoggerFactory;
-import org.springframework.boot.test.context.SpringBootTest;
 import org.springframework.http.*;
-import org.springframework.test.context.ContextConfiguration;
 import org.springframework.web.client.RestTemplate;
 
 import java.util.Collections;
 import java.util.HashMap;
 import java.util.Map;
 
-import static org.junit.jupiter.api.Assertions.*;
-
 class AppointmentControllerTest {
 
     RestTemplate template;
 
     @BeforeEach
-    public void setUp()
-    {
-        template=new RestTemplate();
+    public void setUp() {
+        template = new RestTemplate();
     }
 
     @Test
@@ -37,8 +27,8 @@ class AppointmentControllerTest {
         // set `Content-Type` and `Accept` headers
         headers.setContentType(MediaType.APPLICATION_JSON);
         headers.setAccept(Collections.singletonList(MediaType.APPLICATION_JSON));
-        String accessToken ="Bearer "+"eyJhbGciOiJIUzUxMiJ9.eyJzdWIiOiJzYW0iLCJleHAiOjE2MDA5OTcxODUsImlhdCI6MTYwMDk3OTE4NX0.IcDiCeA8dJx3GkSEwtMeqa9y-JIDjSQ8ht4G5WNCmN5ZOEGfohy1y4W7kFFwCoSyqpi9MHcJisNSJFOj8g6Caw";
-        headers.set("Authorization",accessToken);
+        String accessToken = "Bearer " + "eyJhbGciOiJIUzUxMiJ9.eyJzdWIiOiJzYW0iLCJleHAiOjE2MDEwMjg2MzUsImlhdCI6MTYwMTAxMDYzNX0.nZiBZM9xZ1lX2VqBVQAdW_QGSBHlGxHQo6FBw2wE4E10JaFwQ-z0Stlj_Ac2IWbq5t-njHy0bJKcVPcMCP_rrQ";
+        headers.set("Authorization", accessToken);
         // build the request
         HttpEntity request = new HttpEntity(headers);
         ResponseEntity<String> response = template.exchange(
@@ -60,14 +50,14 @@ class AppointmentControllerTest {
     @Test
     void viewAllAppointmentByUser() {
         //url
-        String url = "http://localhost:9090/appointment/byuser/1";
+        String url = "http://localhost:9090/appointment/byuser/13";
         // create headers
         HttpHeaders headers = new HttpHeaders();
         // set `Content-Type` and `Accept` headers
         headers.setContentType(MediaType.APPLICATION_JSON);
         headers.setAccept(Collections.singletonList(MediaType.APPLICATION_JSON));
-        String accessToken ="Bearer "+"eyJhbGciOiJIUzUxMiJ9.eyJzdWIiOiJzYW0iLCJleHAiOjE2MDA5OTcxODUsImlhdCI6MTYwMDk3OTE4NX0.IcDiCeA8dJx3GkSEwtMeqa9y-JIDjSQ8ht4G5WNCmN5ZOEGfohy1y4W7kFFwCoSyqpi9MHcJisNSJFOj8g6Caw";
-        headers.set("Authorization",accessToken);
+        String accessToken = "Bearer " + "eyJhbGciOiJIUzUxMiJ9.eyJzdWIiOiJzYW0iLCJleHAiOjE2MDEwMjg2MzUsImlhdCI6MTYwMTAxMDYzNX0.nZiBZM9xZ1lX2VqBVQAdW_QGSBHlGxHQo6FBw2wE4E10JaFwQ-z0Stlj_Ac2IWbq5t-njHy0bJKcVPcMCP_rrQ";
+        headers.set("Authorization", accessToken);
         // build the request
         HttpEntity request = new HttpEntity(headers);
         ResponseEntity<String> response = template.exchange(
@@ -89,14 +79,14 @@ class AppointmentControllerTest {
     @Test
     void viewAllAppointmentByDiagnosticCenter() {
         //url
-        String url = "http://localhost:9090/appointment/bycenter/2";
+        String url = "http://localhost:9090/appointment/bycenter/8";
         // create headers
         HttpHeaders headers = new HttpHeaders();
         // set `Content-Type` and `Accept` headers
         headers.setContentType(MediaType.APPLICATION_JSON);
         headers.setAccept(Collections.singletonList(MediaType.APPLICATION_JSON));
-        String accessToken ="Bearer "+"eyJhbGciOiJIUzUxMiJ9.eyJzdWIiOiJzYW0iLCJleHAiOjE2MDA5OTcxODUsImlhdCI6MTYwMDk3OTE4NX0.IcDiCeA8dJx3GkSEwtMeqa9y-JIDjSQ8ht4G5WNCmN5ZOEGfohy1y4W7kFFwCoSyqpi9MHcJisNSJFOj8g6Caw";
-        headers.set("Authorization",accessToken);
+        String accessToken = "Bearer " + "eyJhbGciOiJIUzUxMiJ9.eyJzdWIiOiJzYW0iLCJleHAiOjE2MDEwMjg2MzUsImlhdCI6MTYwMTAxMDYzNX0.nZiBZM9xZ1lX2VqBVQAdW_QGSBHlGxHQo6FBw2wE4E10JaFwQ-z0Stlj_Ac2IWbq5t-njHy0bJKcVPcMCP_rrQ";
+        headers.set("Authorization", accessToken);
         // build the request
         HttpEntity request = new HttpEntity(headers);
         ResponseEntity<String> response = template.exchange(
@@ -107,10 +97,10 @@ class AppointmentControllerTest {
                 1
         );
         if (response.getStatusCode() == HttpStatus.OK) {
-            System.out.println("Request Successful for viewing all appointments by user Id.");
+            System.out.println("Request Successful for viewing all appointments by center Id.");
             System.out.println(response.getBody());
         } else {
-            System.out.println("Request Failed for for viewing all appointments by user Id.");
+            System.out.println("Request Failed for for viewing all appointments by center Id.");
             System.out.println(response.getStatusCode());
         }
     }
@@ -118,14 +108,14 @@ class AppointmentControllerTest {
     @Test
     void findAppointment() {
         //url
-        String url = "http://localhost:9090/appointment/find/8";
+        String url = "http://localhost:9090/appointment/find/13";
         // create headers
         HttpHeaders headers = new HttpHeaders();
         // set `Content-Type` and `Accept` headers
         headers.setContentType(MediaType.APPLICATION_JSON);
         headers.setAccept(Collections.singletonList(MediaType.APPLICATION_JSON));
-        String accessToken ="Bearer "+"eyJhbGciOiJIUzUxMiJ9.eyJzdWIiOiJzYW0iLCJleHAiOjE2MDA5OTcxODUsImlhdCI6MTYwMDk3OTE4NX0.IcDiCeA8dJx3GkSEwtMeqa9y-JIDjSQ8ht4G5WNCmN5ZOEGfohy1y4W7kFFwCoSyqpi9MHcJisNSJFOj8g6Caw";
-        headers.set("Authorization",accessToken);
+        String accessToken = "Bearer " + "eyJhbGciOiJIUzUxMiJ9.eyJzdWIiOiJzYW0iLCJleHAiOjE2MDEwMjg2MzUsImlhdCI6MTYwMTAxMDYzNX0.nZiBZM9xZ1lX2VqBVQAdW_QGSBHlGxHQo6FBw2wE4E10JaFwQ-z0Stlj_Ac2IWbq5t-njHy0bJKcVPcMCP_rrQ";
+        headers.set("Authorization", accessToken);
         // build the request
         HttpEntity request = new HttpEntity(headers);
         ResponseEntity<String> response = template.exchange(
@@ -158,23 +148,23 @@ class AppointmentControllerTest {
         headers.setContentType(MediaType.APPLICATION_JSON);
         // set `accept` header
         headers.setAccept(Collections.singletonList(MediaType.APPLICATION_JSON));
-        String accessToken ="Bearer "+"eyJhbGciOiJIUzUxMiJ9.eyJzdWIiOiJzYW0iLCJleHAiOjE2MDA5OTcxODUsImlhdCI6MTYwMDk3OTE4NX0.IcDiCeA8dJx3GkSEwtMeqa9y-JIDjSQ8ht4G5WNCmN5ZOEGfohy1y4W7kFFwCoSyqpi9MHcJisNSJFOj8g6Caw";
-        headers.set("Authorization",accessToken);
+        String accessToken = "Bearer " + "eyJhbGciOiJIUzUxMiJ9.eyJzdWIiOiJzYW0iLCJleHAiOjE2MDEwMjg2MzUsImlhdCI6MTYwMTAxMDYzNX0.nZiBZM9xZ1lX2VqBVQAdW_QGSBHlGxHQo6FBw2wE4E10JaFwQ-z0Stlj_Ac2IWbq5t-njHy0bJKcVPcMCP_rrQ";
+        headers.set("Authorization", accessToken);
         // request body parameters
         Map<String, Object> map = new HashMap<>();
 
         Map<String, Object> map1 = new HashMap<>();
-        map1.put("userId", 1);
+        map1.put("userId", 14);
         Map<String, Object> map2 = new HashMap<>();
-        map2.put("centerId", 2);
+        map2.put("centerId", 3);
         Map<String, Object> map3 = new HashMap<>();
-        map3.put("testId", 3);
-        map.put("user",map1);
-        map.put("diagnosticCenter",map2);
-        map.put("test",map3);
-        map.put("appointmentTime", "2020-09-25T12:00:00.000+00:00");
+        map3.put("testId", 6);
+        map.put("user", map1);
+        map.put("diagnosticCenter", map2);
+        map.put("test", map3);
+        map.put("appointmentTime", "2020-09-25T11:00:00.000+00:00");
         map.put("approved", false);
-        map.put("appointmentDate", "2020-09-25");
+        map.put("appointmentDate", "2020-09-27");
 
         // build the request
         HttpEntity<Map<String, Object>> entity = new HttpEntity<>(map, headers);
@@ -195,14 +185,14 @@ class AppointmentControllerTest {
     @Test
     void deleteAppointment() {
         //url
-        String url = "http://localhost:9090/appointment/delete/39";
+        String url = "http://localhost:9090/appointment/delete/21";
         // create headers
         HttpHeaders headers = new HttpHeaders();
         // set `Content-Type` and `Accept` headers
         headers.setContentType(MediaType.APPLICATION_JSON);
         headers.setAccept(Collections.singletonList(MediaType.APPLICATION_JSON));
-        String accessToken ="Bearer "+"eyJhbGciOiJIUzUxMiJ9.eyJzdWIiOiJzYW0iLCJleHAiOjE2MDA5OTcxODUsImlhdCI6MTYwMDk3OTE4NX0.IcDiCeA8dJx3GkSEwtMeqa9y-JIDjSQ8ht4G5WNCmN5ZOEGfohy1y4W7kFFwCoSyqpi9MHcJisNSJFOj8g6Caw";
-        headers.set("Authorization",accessToken);
+        String accessToken = "Bearer " + "eyJhbGciOiJIUzUxMiJ9.eyJzdWIiOiJzYW0iLCJleHAiOjE2MDEwMjg2MzUsImlhdCI6MTYwMTAxMDYzNX0.nZiBZM9xZ1lX2VqBVQAdW_QGSBHlGxHQo6FBw2wE4E10JaFwQ-z0Stlj_Ac2IWbq5t-njHy0bJKcVPcMCP_rrQ";
+        headers.set("Authorization", accessToken);
         // build the request
         HttpEntity request = new HttpEntity(headers);
         ResponseEntity<String> response = template.exchange(
@@ -224,7 +214,7 @@ class AppointmentControllerTest {
     @Test
     void updateAppointment() {
         // request url
-        String url = "http://localhost:9090/appointment/update/40";
+        String url = "http://localhost:9090/appointment/update/17";
 
         // create an instance of RestTemplate
         RestTemplate restTemplate = new RestTemplate();
@@ -235,23 +225,23 @@ class AppointmentControllerTest {
         headers.setContentType(MediaType.APPLICATION_JSON);
         // set `accept` header
         headers.setAccept(Collections.singletonList(MediaType.APPLICATION_JSON));
-        String accessToken ="Bearer "+"eyJhbGciOiJIUzUxMiJ9.eyJzdWIiOiJzYW0iLCJleHAiOjE2MDA5OTcxODUsImlhdCI6MTYwMDk3OTE4NX0.IcDiCeA8dJx3GkSEwtMeqa9y-JIDjSQ8ht4G5WNCmN5ZOEGfohy1y4W7kFFwCoSyqpi9MHcJisNSJFOj8g6Caw";
-        headers.set("Authorization",accessToken);
+        String accessToken = "Bearer " + "eyJhbGciOiJIUzUxMiJ9.eyJzdWIiOiJzYW0iLCJleHAiOjE2MDEwMjg2MzUsImlhdCI6MTYwMTAxMDYzNX0.nZiBZM9xZ1lX2VqBVQAdW_QGSBHlGxHQo6FBw2wE4E10JaFwQ-z0Stlj_Ac2IWbq5t-njHy0bJKcVPcMCP_rrQ";
+        headers.set("Authorization", accessToken);
         // request body parameters
         Map<String, Object> map = new HashMap<>();
 
         Map<String, Object> map1 = new HashMap<>();
-        map1.put("userId", 1);
+        map1.put("userId", 14);
         Map<String, Object> map2 = new HashMap<>();
-        map2.put("centerId", 2);
+        map2.put("centerId", 3);
         Map<String, Object> map3 = new HashMap<>();
-        map3.put("testId", 3);
-        map.put("user",map1);
-        map.put("diagnosticCenter",map2);
-        map.put("test",map3);
-        map.put("appointmentTime", "2020-09-25T12:00:00.000+00:00");
+        map3.put("testId", 6);
+        map.put("user", map1);
+        map.put("diagnosticCenter", map2);
+        map.put("test", map3);
+        map.put("appointmentTime", "2020-10-29T12:00:00.000+00:00");
         map.put("approved", false);
-        map.put("appointmentDate", "2020-09-29");
+        map.put("appointmentDate", "2020-10-29");
 
         // build the request
         HttpEntity<Map<String, Object>> entity = new HttpEntity<>(map, headers);
@@ -277,14 +267,14 @@ class AppointmentControllerTest {
     @Test
     void approveAppointment() {
         //url
-        String url = "http://localhost:9090/appointment/approve/16";
+        String url = "http://localhost:9090/appointment/approve/13";
         // create headers
         HttpHeaders headers = new HttpHeaders();
         // set `Content-Type` and `Accept` headers
         headers.setContentType(MediaType.APPLICATION_JSON);
         headers.setAccept(Collections.singletonList(MediaType.APPLICATION_JSON));
-        String accessToken ="Bearer "+"eyJhbGciOiJIUzUxMiJ9.eyJzdWIiOiJzYW0iLCJleHAiOjE2MDA5OTcxODUsImlhdCI6MTYwMDk3OTE4NX0.IcDiCeA8dJx3GkSEwtMeqa9y-JIDjSQ8ht4G5WNCmN5ZOEGfohy1y4W7kFFwCoSyqpi9MHcJisNSJFOj8g6Caw";
-        headers.set("Authorization",accessToken);
+        String accessToken = "Bearer " + "eyJhbGciOiJIUzUxMiJ9.eyJzdWIiOiJzYW0iLCJleHAiOjE2MDEwMjg2MzUsImlhdCI6MTYwMTAxMDYzNX0.nZiBZM9xZ1lX2VqBVQAdW_QGSBHlGxHQo6FBw2wE4E10JaFwQ-z0Stlj_Ac2IWbq5t-njHy0bJKcVPcMCP_rrQ";
+        headers.set("Authorization", accessToken);
         // build the request
         HttpEntity request = new HttpEntity(headers);
         ResponseEntity<String> response = template.exchange(

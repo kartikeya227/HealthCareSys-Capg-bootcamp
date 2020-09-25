@@ -1,8 +1,8 @@
 package com.cg.bootcamp.healthcare.controller;
 
 import com.cg.bootcamp.healthcare.dao.UserDao;
-import com.cg.bootcamp.healthcare.model.User;
 import com.cg.bootcamp.healthcare.exceptions.RecordNotFoundException;
+import com.cg.bootcamp.healthcare.model.User;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
