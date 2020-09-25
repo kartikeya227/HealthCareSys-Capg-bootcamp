@@ -72,7 +72,7 @@ public class AppointmentController {
             appointmentService.addAppointment(appointment);
             return new ResponseEntity<Appointment>(appointment, HttpStatus.CREATED);
         } catch (Exception e) {
-            return new ResponseEntity(e, HttpStatus.IM_USED);
+            return new ResponseEntity(e, HttpStatus.BAD_REQUEST);
         }
     }
 
@@ -98,7 +98,7 @@ public class AppointmentController {
      * Put Http Request
      */
     @PutMapping("/update/{id}")
-    public ResponseEntity<Appointment> updateDiagnosticCenter(@Valid @RequestBody Appointment appointment, @PathVariable("id") int appointmentId) {
+    public ResponseEntity<Appointment> updateAppointment(@Valid @RequestBody Appointment appointment, @PathVariable("id") int appointmentId) {
         Optional<Appointment> findById = appointmentService.findAppointment(appointmentId);
         try {
             if (findById.isPresent()) {
@@ -116,7 +116,7 @@ public class AppointmentController {
      * Put Http Request
      */
     @PutMapping("/approve/{id}")
-    public ResponseEntity<Appointment> updateDiagnosticCenter(@PathVariable("id") int appointmentId) {
+    public ResponseEntity<Appointment> approveAppointment(@PathVariable("id") int appointmentId) {
         Optional<Appointment> findById = appointmentService.findAppointment(appointmentId);
         try {
             if (findById.isPresent()) {
