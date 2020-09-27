@@ -6,6 +6,7 @@ import com.cg.bootcamp.healthcare.service.AppointmentService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
+import org.springframework.security.access.prepost.PreAuthorize;
 import org.springframework.web.bind.annotation.*;
 
 import javax.validation.Valid;
@@ -26,6 +27,7 @@ public class AppointmentController {
      * If no appointment is made in either of the centers returns a empty list.
      */
     @GetMapping("/all")
+    @PreAuthorize("hasRole('ADMIN')")
     public List<Appointment> viewAllAppointment() {
         return appointmentService.viewAllAppointment();
     }
@@ -37,6 +39,7 @@ public class AppointmentController {
      * Takes user Id as input through path variable
      */
     @GetMapping("/byuser/{id}")
+    @PreAuthorize("hasRole('USER')")
     public List<Appointment> viewAllAppointmentByUser(@PathVariable("id") int userId) {
         return appointmentService.viewAllAppointmentByUser(userId);
     }
@@ -48,6 +51,7 @@ public class AppointmentController {
      * Takes user Id as input through path variable
      */
     @GetMapping("/bycenter/{id}")
+    @PreAuthorize("hasRole('ADMIN')")
     public List<Appointment> viewAllAppointmentByDiagnosticCenter(@PathVariable("id") int centerId) {
         return appointmentService.viewAllAppointmentByDiagnosticCenter(centerId);
     }
@@ -61,6 +65,7 @@ public class AppointmentController {
      * Fail code NOT FOUND.
      */
     @GetMapping("/find/{id}")
+    @PreAuthorize("hasRole('ADMIN')")
     @ExceptionHandler(RecordNotFoundException.class)
     public ResponseEntity<Appointment> findAppointment(@PathVariable("id") int appointmentId) {
         Optional<Appointment> findById = appointmentService.findAppointment(appointmentId);
@@ -84,6 +89,7 @@ public class AppointmentController {
      * Fail code NOT BAD_REQUEST.
      */
     @PostMapping("/add")
+    @PreAuthorize("hasRole('USER')")
     public ResponseEntity<Appointment> addAppointment(@Valid @RequestBody Appointment appointment) {
         try {
             appointmentService.addAppointment(appointment);
@@ -103,6 +109,7 @@ public class AppointmentController {
      * Fail code NOT NOT_FOUND.
      */
     @DeleteMapping("/delete/{id}")
+    @PreAuthorize("hasRole('USER') or hasRole('ADMIN')")
     public ResponseEntity<Appointment> deleteAppointment(@PathVariable("id") int appointmentId) {
         Optional<Appointment> findById = appointmentService.findAppointment(appointmentId);
         try {
@@ -128,6 +135,7 @@ public class AppointmentController {
      * Fail code NOT NOT_FOUND.
      */
     @PutMapping("/update/{id}")
+    @PreAuthorize("hasRole('USER')")
     public ResponseEntity<Appointment> updateAppointment(@Valid @RequestBody Appointment appointment, @PathVariable("id") int appointmentId) {
         Optional<Appointment> findById = appointmentService.findAppointment(appointmentId);
         try {
@@ -152,6 +160,7 @@ public class AppointmentController {
      * Fail code NOT NOT_FOUND.
      */
     @PutMapping("/approve/{id}")
+    @PreAuthorize("hasRole('ADMIN')")
     public ResponseEntity<Appointment> approveAppointment(@PathVariable("id") int appointmentId) {
         Optional<Appointment> findById = appointmentService.findAppointment(appointmentId);
         try {

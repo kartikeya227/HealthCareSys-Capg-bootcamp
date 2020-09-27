@@ -7,6 +7,7 @@ import com.cg.bootcamp.healthcare.service.DiagnosticCenterService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
+import org.springframework.security.access.prepost.PreAuthorize;
 import org.springframework.web.bind.annotation.*;
 
 import javax.validation.Valid;
@@ -24,6 +25,7 @@ public class DiagnosticCenterController {
     /**
      *
      */
+    @PreAuthorize("hasRole('USER') or hasRole('ADMIN')")
     @GetMapping("/all")
     public List<DiagnosticCenter> viewAllDiagnosticCenter() {
         return diagnosticCenterService.viewAllDiagnosticCenter();
@@ -32,6 +34,7 @@ public class DiagnosticCenterController {
     /**
      * Get Http Request
      */
+    @PreAuthorize("hasRole('ADMIN')")
     @GetMapping("/find/{id}")
     @ExceptionHandler(RecordNotFoundException.class)
     public ResponseEntity<DiagnosticCenter> findDiagnosticCenter(@PathVariable("id") int centerId) {
@@ -52,6 +55,7 @@ public class DiagnosticCenterController {
      * Post Http Request
      */
     @PostMapping("/add")
+    @PreAuthorize("hasRole('ADMIN')")
     public ResponseEntity<DiagnosticCenter> addDiagnosticCenter(@Valid @RequestBody DiagnosticCenter diagnosticCenter) {
         try {
             diagnosticCenterService.addDiagnosticCenter(diagnosticCenter);
@@ -65,6 +69,7 @@ public class DiagnosticCenterController {
      * Delete Http Request
      */
     @DeleteMapping("/delete/{id}")
+    @PreAuthorize("hasRole('ADMIN')")
     public ResponseEntity<DiagnosticCenter> deleteDiagnosticCenter(@PathVariable("id") int centerId) {
         Optional<DiagnosticCenter> findById = diagnosticCenterService.findDiagnosticCenter(centerId);
         try {
@@ -83,6 +88,7 @@ public class DiagnosticCenterController {
      * Put Http Request
      */
     @PutMapping("/update/{id}")
+    @PreAuthorize("hasRole('ADMIN')")
     public ResponseEntity<DiagnosticCenter> updateDiagnosticCenter(@Valid @RequestBody DiagnosticCenter diagnosticCenter, @PathVariable("id") int centerId) {
         Optional<DiagnosticCenter> findById = diagnosticCenterService.findDiagnosticCenter(centerId);
         try {
