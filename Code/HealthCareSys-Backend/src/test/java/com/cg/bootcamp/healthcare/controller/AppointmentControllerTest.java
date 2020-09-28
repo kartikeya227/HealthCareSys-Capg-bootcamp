@@ -13,7 +13,7 @@ import java.util.Map;
 class AppointmentControllerTest {
 
     String jwtTokenUser = "Bearer "+"eyJhbGciOiJIUzUxMiJ9.eyJSb2xlIjpbeyJhdXRob3JpdHkiOiJST0xFX1VTRVIifV0sInN1YiI6InNoYW0iLCJleHAiOjE2MDEyMjE2NzksImlhdCI6MTYwMTIwMzY3OX0.tXPm_4P1kQFaXcJz2IOVFAeb9V9mfsHQmKgRhC59qXjAY8aqZlMrCrzLxqgi7qnPaukIfGr5omtUOk_zOJe0EQ";
-    String jwtTokenAdmin = "Bearer "+"eyJhbGciOiJIUzUxMiJ9.eyJSb2xlIjpbeyJhdXRob3JpdHkiOiJST0xFX0FETUlOIn1dLCJzdWIiOiJyYW0iLCJleHAiOjE2MDEyMjE4MzIsImlhdCI6MTYwMTIwMzgzMn0.6up_8z8y1UDOudl1iARroErYyMQUL1x97yOWi4UIcBRP6q-_W0tKdTKKgrHfpnXM0Z5QY9YQMtgn0TSEEPBsYw";
+    String jwtTokenAdmin = "Bearer "+"eyJhbGciOiJIUzUxMiJ9.eyJSb2xlIjpbeyJhdXRob3JpdHkiOiJST0xFX0FETUlOIn1dLCJzdWIiOiJyYW0iLCJleHAiOjE2MDEzNDMyNzAsImlhdCI6MTYwMTMyNTI3MH0.3OkUhsnIM7Na76hRPtuMoNPGr6J7W0HhkqnYVM443055wc8Z8KzXlFenxb1aC3_CJEOmaBfTn7yf0CIHDMSmvg";
     RestTemplate template;
 
     @BeforeEach
