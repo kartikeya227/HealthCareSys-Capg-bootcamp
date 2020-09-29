@@ -1,0 +1,80 @@
+<app-admin-panel></app-admin-panel>
+<section class="min-vh-100" id="cover">
+  <div id="cover-caption">
+    <div class="container">
+      <div class="row text-white">
+        <div class="col-xl-5 col-lg-6 col-md-8 col-sm-10 mx-auto text-center form p-4">
+          <h1 class="display-4 py-2 text-truncate black">ACCOUNT DETAILS</h1>
+          <div class="px-2">
+            <div>
+              <div class="card my-5">
+                <table class="table table-bordered table-striped">
+                  <tbody>
+                  <tr>
+                    <td>User Id</td>
+                    <td>{{userDetailsDisplay.userId}}</td>
+                  </tr>
+                  <tr>
+                    <td>Username</td>
+                    <td>{{userDetailsDisplay.username}}</td>
+                  </tr>
+                  <tr>
+                    <td>Full Name</td>
+                    <td>{{userDetailsDisplay.fullName}}</td>
+                  </tr>
+                  <tr>
+                    <td>Age</td>
+                    <td>{{userDetailsDisplay.userAge}}</td>
+                  </tr>
+                  <tr>
+                    <td>Gender</td>
+                    <td>{{userDetailsDisplay.userGender}}</td>
+                  </tr>
+                  <tr>
+                    <td>User Type</td>
+                    <td>{{userDetailsDisplay.userRole}}</td>
+                  </tr>
+                  <tr>
+                    <td>Phone number</td>
+                    <td>{{userDetailsDisplay.contactNumber}}</td>
+                  </tr>
+                  <tr>
+                    <td>Email</td>
+                    <td>{{userDetailsDisplay.emailId}}</td>
+                  </tr>
+                  </tbody>
+                </table>
+              </div>
+
+              <button (click)="deleteAccount()" class="btn btn-danger mr-1" type="submit">Delete Account</button>
+              <button (click)="updateAccount()" class="btn btn-primary" type="submit">Update Details</button>
+            </div>
+            <div *ngIf="showUpdate">
+              <div class="card my-5">
+                <div class="card-header text-dark"><b>Update Account Details</b></div>
+                <table class="card-body table table-bordered table-striped">
+                  <tbody>
+                  <tr>
+                    <td>Full Name</td>
+                    <td><input [(ngModel)]="userDetails.fullName"></td>
+                  </tr>
+                  <tr>
+                    <td>Phone number</td>
+                    <td><input [(ngModel)]="userDetails.contactNumber"></td>
+                  </tr>
+                  <tr>
+                    <td>Email</td>
+                    <td><input [(ngModel)]="userDetails.emailId"></td>
+                  </tr>
+                  </tbody>
+                </table>
+              </div>
+              <button (click)="confirmUpdateAccount()" class="btn btn-primary" type="submit">Confirm
+              </button>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>

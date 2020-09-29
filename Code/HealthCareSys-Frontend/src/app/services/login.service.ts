@@ -29,11 +29,11 @@ export class LoginService {
       .pipe(map(token => {
         // store user details and jwt token in local storage to keep user logged in between page refreshes
         this.authService.setToken(token);
-      }));
+      }), catchError(this.handleError<any>(`login user`)));
   }
 
 
-  private handleError<T>(operation = 'operation', result?: T) {
+  private handleError<T>(operation = 'operation', result?: T): any {
     return (error: any): Observable<T> => {
 
       // TODO: send the error to remote logging infrastructure

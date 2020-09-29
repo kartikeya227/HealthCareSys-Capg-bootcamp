@@ -1,1 +1,110 @@
-<p>signup works!</p>
+<section class="min-vh-100" id="cover">
+  <div id="cover-caption">
+    <div class="container">
+      <div class="row text-white">
+        <div class="col-xl-5 col-lg-6 col-md-8 col-sm-10 mx-auto text-center form p-4">
+          <h1 class="display-4 py-2 text-truncate">WingMan</h1>
+          <div class="px-2">
+            <form #adduserForm="ngForm" (ngSubmit)="onSubmit()" class="justify-content-center">
+
+              <div class="form-group">
+                <input #username="ngModel" [(ngModel)]="user.username"
+                       class="form-control"
+                       id="username"
+                       name="username"
+                       placeholder="Enter username"
+                       required type="text">
+              </div>
+              <div [hidden]="username.valid || username.pristine" class="alert alert-danger">User name is required.
+              </div>
+
+              <div class="form-group">
+                <input #fullName="ngModel" [(ngModel)]="user.fullName"
+                       class="form-control"
+                       id="fullName"
+                       name="fullName"
+                       pattern="[A-Z][a-z]{0,15}[ ][A-Z][a-z]{0,15}"
+                       placeholder="Enter full Name"
+                       required type="text">
+              </div>
+              <div [hidden]="fullName.valid || fullName.pristine" class="alert alert-danger">User name is required.
+                Should be firstname lastname.
+              </div>
+
+              <div class="form-group">
+                <input #password="ngModel" [(ngModel)]="user.password"
+                       class="form-control"
+                       id="password"
+                       name="password"
+                       placeholder="Enter Password"
+                       required type="password">
+              </div>
+              <div [hidden]="password.valid || password.pristine" class="alert alert-danger">Password is
+                required
+              </div>
+
+              <div class="form-group">
+                <input #emailId="ngModel" [(ngModel)]="user.emailId"
+                       [email]="true" class="form-control"
+                       id="emailId"
+                       name="emailId"
+                       ngModel
+                       placeholder="Enter Email"
+                       required type="email">
+              </div>
+              <div [hidden]="emailId.valid || emailId.pristine" class="alert alert-danger">Email is required with
+                proper format.
+              </div>
+
+              <div class="form-group">
+                <input #contactNumber="ngModel" [(ngModel)]="user.contactNumber"
+                       class="form-control"
+                       id="contactNumber"
+                       name="contactNumber"
+                       pattern="[1-9][0-9]{9}"
+                       placeholder="Enter Phone Number"
+                       required type="number">
+              </div>
+              <div [hidden]="contactNumber.valid || contactNumber.pristine" class="alert alert-danger">Phone Number is required,
+                10
+                digit && not starting with 0.
+              </div>
+
+              <div class="form-group">
+                <input #userAge="ngModel" [(ngModel)]="user.userAge"
+                       class="form-control"
+                       id="userAge"
+                       name="userAge"
+                       placeholder="Enter Age"
+                       required type="number">
+              </div>
+              <div [hidden]="userAge.valid || userAge.pristine || userAge.value>100 || userAge.value < 1" class="alert alert-danger">Enter age between 1-100.
+              </div>
+
+              <div class="form-group">
+                <p>
+                  User type:
+                  <input [(ngModel)]="user.userRole" name="userRole" required type="radio" value="ROLE_ADMIN"> Admin
+                  <input [(ngModel)]="user.userRole" name="userRole" required type="radio" value="ROLE_USER"> Customer
+                </p>
+              </div>
+
+              <div class="form-group">
+                <p>
+                  Gender:
+                  <input [(ngModel)]="user.userGender" name="userGender" required type="radio" value="MALE"> Male
+                  <input [(ngModel)]="user.userGender" name="userGender" required type="radio" value="FEMALE"> Female
+                  <input [(ngModel)]="user.userGender" name="userGender" required type="radio" value="OTHER"> Other
+                </p>
+              </div>
+
+              <button [disabled]="!adduserForm.form.valid" class="btn btn-primary"
+                      type="submit">Register
+              </button>
+            </form>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>

@@ -8,12 +8,17 @@ import {Observable} from 'rxjs';
 })
 export class TokenInterceptorService implements HttpInterceptor {
 
-  constructor(public auth: AuthServiceService) {}
+  constructor(public auth: AuthServiceService) {
+  }
+
   intercept(request: HttpRequest<any>, next: HttpHandler): Observable<HttpEvent<any>> {
 
+    if (request.url == 'http://localhost:9090/register' || request.url == 'http://localhost:9090/authenticate') {
+      return next.handle(request);
+    }
     request = request.clone({
       setHeaders: {
-         Authorization: `Bearer ${this.auth.getToken()}`,
+        Authorization: `Bearer ${this.auth.getToken()}`,
         'Content-Type': 'application/json'
       }
     });

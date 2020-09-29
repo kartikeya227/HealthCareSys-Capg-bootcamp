@@ -72,7 +72,7 @@ public class AppointmentController {
         try {
             if (findById.isPresent()) {
                 Appointment appointment = findById.get();
-                return new ResponseEntity<Appointment>(appointment, HttpStatus.FOUND);
+                return new ResponseEntity<Appointment>(appointment, HttpStatus.OK);
             } else {
                 throw new RecordNotFoundException("No appointment  with appointment Id " + appointmentId + " Appointment code.");
             }
@@ -93,7 +93,7 @@ public class AppointmentController {
     public ResponseEntity<Appointment> addAppointment(@Valid @RequestBody Appointment appointment) {
         try {
             appointmentService.addAppointment(appointment);
-            return new ResponseEntity<Appointment>(appointment, HttpStatus.CREATED);
+            return new ResponseEntity<Appointment>(appointment, HttpStatus.OK);
         } catch (Exception e) {
             return new ResponseEntity(e, HttpStatus.BAD_REQUEST);
         }

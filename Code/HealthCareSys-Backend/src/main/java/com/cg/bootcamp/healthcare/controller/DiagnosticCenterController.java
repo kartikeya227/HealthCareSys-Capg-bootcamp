@@ -42,7 +42,7 @@ public class DiagnosticCenterController {
         try {
             if (findById.isPresent()) {
                 DiagnosticCenter diagnosticCenter = findById.get();
-                return new ResponseEntity<DiagnosticCenter>(diagnosticCenter, HttpStatus.FOUND);
+                return new ResponseEntity<DiagnosticCenter>(diagnosticCenter, HttpStatus.OK);
             } else {
                 throw new RecordNotFoundException("No record found with the provided " + centerId + "Diagnostic center code.");
             }
@@ -59,7 +59,7 @@ public class DiagnosticCenterController {
     public ResponseEntity<DiagnosticCenter> addDiagnosticCenter(@Valid @RequestBody DiagnosticCenter diagnosticCenter) {
         try {
             diagnosticCenterService.addDiagnosticCenter(diagnosticCenter);
-            return new ResponseEntity<DiagnosticCenter>(diagnosticCenter, HttpStatus.CREATED);
+            return new ResponseEntity<DiagnosticCenter>(diagnosticCenter, HttpStatus.OK);
         } catch (Exception e) {
             return new ResponseEntity(e, HttpStatus.IM_USED);
         }

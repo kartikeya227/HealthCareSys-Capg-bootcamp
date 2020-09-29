@@ -1,1 +1,32 @@
-<p>navbar works!</p>
+<nav class="navbar nav navbar-light bg-light justify-content-between">
+  <a class="navbar-brand" href="#">
+    <img alt="" class="d-inline-block align-top" height="25" src="../../assets/images/icon.png" width="25">
+    &nbsp;&nbsp;{{title}}
+  </a>
+
+  <form class="form-inline">
+    <div class="dropleft">
+      <button (click)="check()"  aria-expanded="false" aria-haspopup="true"
+              class="navbar-toggler" data-toggle="dropdown" id="dropdownMenuButton" type="button">
+        <span class="navbar-toggler-icon"></span>
+      </button>
+      <div aria-labelledby="dropdownMenuButton" class="dropdown-menu">
+
+        <button (click)="logout()" [hidden]="!loginStatus"
+                class="dropdown-item btn btn-outline-success my-2 my-sm-0" routerLink="/"
+                type="submit">Logout
+        </button>
+        <button [hidden]="loginStatus"
+                class="dropdown-item btn btn-outline-success my-2 my-sm-0 mr-1" routerLink="/login"
+                type="submit">Login
+        </button>
+        <button [hidden]="loginStatus" class="dropdown-item btn btn-outline-success my-2 my-sm-0" routerLink="/signup"
+                type="submit">Sign
+          Up
+        </button>
+      </div>
+    </div>
+  </form>
+</nav>
+
+

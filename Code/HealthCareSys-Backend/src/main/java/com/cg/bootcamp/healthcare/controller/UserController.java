@@ -40,7 +40,7 @@ public class UserController {
         try {
             if (findById.isPresent()) {
                 User user = findById.get();
-                return new ResponseEntity<User>(user, HttpStatus.FOUND);
+                return new ResponseEntity<User>(user, HttpStatus.OK);
             } else {
                 throw new RecordNotFoundException("No record found with the provided " + userId + " user Id.");
             }
@@ -48,6 +48,8 @@ public class UserController {
             return new ResponseEntity(e.getMessage(), HttpStatus.NOT_FOUND);
         }
     }
+
+
 
     /**
      * Delete Http Request

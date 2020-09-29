@@ -14,6 +14,13 @@ import {HTTP_INTERCEPTORS, HttpClientModule} from '@angular/common/http';
 import {TokenInterceptorService} from './Helper/token-interceptor.service';
 import {LoginService} from './services/login.service';
 import {AuthServiceService} from './Helper/auth-service.service';
+import {FormsModule} from '@angular/forms';
+import { AddCenterComponent } from './adminpanel/add-center/add-center.component';
+import { ViewCenterComponent } from './adminpanel/view-center/view-center.component';
+import { AddAppointmentComponent } from './customerpanel/add-appointment/add-appointment.component';
+import { AccountDetailsComponent } from './account-details/account-details.component';
+import { ViewAppointmentCustomerComponent } from './customerpanel/view-appointment-customer/view-appointment-customer.component';
+import { ViewAppointmentAdminComponent } from './adminpanel/view-appointment-admin/view-appointment-admin.component';
 
 @NgModule({
   declarations: [
@@ -23,13 +30,20 @@ import {AuthServiceService} from './Helper/auth-service.service';
     SignupComponent,
     NavbarComponent,
     AdminpanelComponent,
-    CustomerpanelComponent
+    CustomerpanelComponent,
+    AddCenterComponent,
+    ViewCenterComponent,
+    AddAppointmentComponent,
+    AccountDetailsComponent,
+    ViewAppointmentCustomerComponent,
+    ViewAppointmentAdminComponent
   ],
   imports: [
     BrowserModule,
     HttpClientModule,
     AppRoutingModule,
-    BrowserAnimationsModule
+    BrowserAnimationsModule,
+    FormsModule
   ],
   providers: [
     {
