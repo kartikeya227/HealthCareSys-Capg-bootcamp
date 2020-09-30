@@ -21,6 +21,7 @@ import { AddAppointmentComponent } from './customerpanel/add-appointment/add-app
 import { AccountDetailsComponent } from './account-details/account-details.component';
 import { ViewAppointmentCustomerComponent } from './customerpanel/view-appointment-customer/view-appointment-customer.component';
 import { ViewAppointmentAdminComponent } from './adminpanel/view-appointment-admin/view-appointment-admin.component';
+import { AdminPanelLandingComponent } from './adminpanel/admin-panel-landing/admin-panel-landing.component';
 
 @NgModule({
   declarations: [
@@ -36,7 +37,8 @@ import { ViewAppointmentAdminComponent } from './adminpanel/view-appointment-adm
     AddAppointmentComponent,
     AccountDetailsComponent,
     ViewAppointmentCustomerComponent,
-    ViewAppointmentAdminComponent
+    ViewAppointmentAdminComponent,
+    AdminPanelLandingComponent
   ],
   imports: [
     BrowserModule,

@@ -1,1 +1,98 @@
-<p>view-appointment-admin works!</p>
+<app-admin-panel></app-admin-panel>
+<section class="min-vh-100" id="cover">
+  <div id="cover-caption">
+    <div class="container">
+      <h1 class="display-4 py-2 text-truncate text-center text-white"><b>Appointments</b></h1>
+      <div class="row">
+        <div class=" my-5 col">
+          <div class="card my-5">
+            <div *ngIf="showCenters"class="card-header text-center text-dark"><b>Select a Diagnostic center to view appointments under it.</b></div>
+            <div  class="dropdown">
+                <button class="btn btn-secondary dropdown-toggle mt-2 mb-2" type="button" id="dropdownMenu2" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                  Diagnostic Centers
+                </button>
+                <div class="dropdown-menu" aria-labelledby="dropdownMenu2">
+                  <button (click)="selectCenter(i)" *ngFor="let center of centers; let i = index"
+                          class="dropdown-item" type="button">{{center.centerName}}</button>
+                </div>
+              </div>
+          </div>
+          <div *ngIf="!showAppointments && currentCenter!=null" class="card my-5">
+            <div  class="card-header text-center text-dark"><b>No appointments made at&nbsp;{{currentCenter.centerName}}</b></div>
+          </div>
+          <div *ngIf="showAppointments" class="card my-5">
+            <div  class="card-header text-center text-dark"><b>List of all Appointments for Center: &nbsp;{{currentCenter.centerName}}</b></div>
+            <table class="table table-bordered table-striped">
+              <thead class="thead-dark">
+              <tr>
+                <th scope="col">#</th>
+                <th scope="col">Appointment Id</th>
+                <th scope="col">Customer Name</th>
+                <th scope="col">Test Name</th>
+              </tr>
+              </thead>
+              <tbody>
+              <tr role="button" (click)="showAppointmentDetails(i)" *ngFor="let appointment of appointments; let i = index">
+                <td>{{i + 1}}</td>
+                <td>{{ appointment.appointmentId }}</td>
+                <td>{{ appointment.user.fullName}}</td>
+                <td>{{ appointment.test.testName }}</td>
+              </tr>
+              </tbody>
+            </table>
+          </div>
+        </div>
+
+
+        <div *ngIf="showDetails" class="my-5 col">
+          <div class="card my-5">
+            <div class="card-header text-center text-dark"><b>Appointment Details</b></div>
+            <table class="table table-bordered table-striped">
+              <tbody>
+              <tr>
+                <td>Appointment Id</td>
+                <td>{{currentAppointment.appointmentId}}</td>
+              </tr>
+              <tr>
+                <td>Test Name</td>
+                <td>{{currentAppointment.test.testName}}</td>
+              </tr>
+              <tr>
+                <td>Doctor Name</td>
+                <td>{{currentAppointment.test.testDoctor}}</td>
+              </tr>
+              <tr>
+                <td>Center Name</td>
+                <td>{{currentAppointment.diagnosticCenter.centerName}}</td>
+              </tr>
+              <tr>
+                <td>Address</td>
+                <td>{{currentAppointment.diagnosticCenter.centerAddrress}}</td>
+              </tr>
+              <tr>
+                <td>Time</td>
+                <td>{{currentAppointment.timestamp}}</td>
+              </tr>
+              <tr>
+                <td>Status</td>
+                <td *ngIf="currentAppointment.approved">Approved</td>
+                <td *ngIf="!currentAppointment.approved">Approval Pending</td>
+              </tr>
+              <tr>
+                <td>Booked by</td>
+                <td>{{currentAppointment.user.fullName}}</td>
+              </tr>
+              </tbody>
+            </table>
+            <div>
+              <button (click)="deleteAppointment()" class="btn btn-danger mr-2 mb-2" type="submit">Delete</button>
+              <button (click)="authorizeAppointment()" class="btn btn-success mr-2 mb-2" type="submit">Approve</button>
+            </div>
+          </div>
+        </div>
+
+      </div>
+    </div>
+  </div>
+</section>
+

@@ -54,7 +54,7 @@ export class AccountService {
     return this.http.put(url, user, this.httpOptions).pipe(
       tap((newUser: User) => this.log(`Updated User with Id: ${newUser.userId}`)),
       catchError(err => {
-        alert('Can not update the account with the updated values, posible violation of constraints.\nError:\n');
+        alert('Error:\nCan not update the account with the updated values, posible violation of constraints.');
         this.handleError<User>(`updateUser`);
         return throwError(err);
       })

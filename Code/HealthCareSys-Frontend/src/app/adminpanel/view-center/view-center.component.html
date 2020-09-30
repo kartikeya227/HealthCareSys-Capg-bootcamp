@@ -1,1 +1,163 @@
-<p>view-center works!</p>
+<app-admin-panel></app-admin-panel>
+<section class="min-vh-100" id="cover">
+  <div id="cover-caption">
+    <div class="container">
+      <h1 class="display-4 py-2 text-truncate text-center text-white"><b>Diagnostic Centers</b></h1>
+      <div class="row">
+        <div class=" my-5 col">
+          <div class="card my-5">
+            <div class="card-header text-center text-dark"><b>List of all Diagnostic Centers</b></div>
+            <table *ngIf="showCenters" class="table table-bordered table-striped">
+              <thead class="thead-dark">
+              <tr>
+                <th scope="col">#</th>
+                <th scope="col">Center Id</th>
+                <th scope="col">Center Name</th>
+              </tr>
+              </thead>
+              <tbody>
+              <tr role="button" (click)="showCenterDetails(i)" *ngFor="let center of centers; let i = index">
+                <td>{{i + 1}}</td>
+                <td>{{ center.centerId }}</td>
+                <td>{{ center.centerName}}</td>
+              </tr>
+              </tbody>
+            </table>
+
+          </div>
+        </div>
+
+        <div *ngIf="showDetails" class="my-5 col">
+          <div class="card my-5">
+            <div class="card-header text-center text-dark"><b>Center Details</b></div>
+            <table class="table table-bordered table-striped">
+              <tbody>
+              <tr>
+                <td>Center Id</td>
+                <td>{{currentCenter.centerId}}</td>
+              </tr>
+              <tr>
+                <td>Center Name</td>
+                <td>{{currentCenter.centerName}}</td>
+              </tr>
+              <tr>
+                <td>Center Address</td>
+                <td>{{currentCenter.centerAddrress}}</td>
+              </tr>
+              </tbody>
+            </table>
+                  <table class="table table-bordered table-striped mt-1">
+                    <thead class="thead-dark">
+                    <tr class="thead-dark">
+                      <th>#</th>
+                      <th>Test Name</th>
+                      <th>Doctor's Name</th>
+                    </tr>
+                    </thead>
+                    <tbody>
+                    <tr *ngFor="let test of currentCenter.testList; let i = index">
+                      <td>{{i + 1}}</td>
+                      <td>{{ test.testName }}</td>
+                      <td>{{ test.testDoctor }}</td>
+                    </tr>
+                    </tbody>
+                  </table>
+
+
+            <div>
+              <button (click)="deleteCenter()" class="btn btn-danger mr-2 mb-2" type="submit">Delete</button>
+              <button (click)="showUpdateCenter()" class="btn btn-primary mr-2 mb-2" type="submit">Update</button>
+              <button (click)="showAddTest()" class="btn btn-success mb-2" type="submit">Add Test</button>
+            </div>
+          </div>
+        </div>
+
+        <div *ngIf="showUpdate" class="my-5 col">
+          <div class="card my-5">
+            <div class="card-header text-center text-dark"><b> Update Center Details</b></div>
+            <table class="table table-bordered table-striped">
+              <thead class="thead-dark">
+              <tr>
+                <th scope="col">Center Id</th>
+                <th scope="col">Center Name</th>
+                <th scope="col">Center Address</th>
+              </tr>
+              </thead>
+              <tbody>
+              <tr>
+                <td>{{ currentCenter.centerId }}</td>
+                <td><input [(ngModel)]="currentCenter.centerName"></td>
+                <td><input [(ngModel)]="currentCenter.centerAddrress"></td>
+              </tr>
+              </tbody>
+            </table>
+
+            <div>
+              <button (click)="updateCenter()" class="btn btn-primary" type="submit">Update</button>
+            </div>
+          </div>
+        </div>
+
+        <div *ngIf="addTestShow" class="my-5 col">
+          <div class="card my-5">
+            <div class="card-header text-center text-dark"><b>Adding tests to center Id: &nbsp;{{currentCenter.centerId}}</b></div>
+            <form class="px-2 mt-2 " #addCenterForm="ngForm" (ngSubmit)="addTestToCenter()">
+
+              <!--         test     -->
+              <form #addTestsForm="ngForm" (ngSubmit)="addTests()">
+                <div class="text-left form-group">
+                  <label class="ml-2" for="testName"><b>Test Name</b></label>
+                  <input #testName="ngModel" [(ngModel)]="test.testName"
+                         class="form-control"
+                         id="testName"
+                         name="testName"
+                         placeholder="Enter Test Name"
+                         required type="text">
+                </div>
+                <div [hidden]="testName.valid || testName.pristine" class="alert alert-danger">Test name required.
+                </div>
+
+                <div class="text-left form-group">
+                  <label class="ml-2" for="testDoctor"><b>Age</b></label>
+                  <input #testDoctor="ngModel" [(ngModel)]="test.testDoctor"
+                         class="form-control"
+                         id="testDoctor"
+                         name="testDoctor"
+                         placeholder="Enter Doctor's Name"
+                         required type="text">
+                </div>
+                <div [hidden]="testDoctor.valid || testDoctor.pristine" class="alert alert-danger">Name of doctor required.
+                </div>
+                <button [disabled]="!addTestsForm.form.valid" class="btn btn-primary mb-2 mt-2"
+                        type="submit">Add Test
+                </button>
+              </form>
+              <div class="card-header left"><b>List of Tests entered till now.</b></div>
+              <table class="table table-bordered table-striped">
+                <thead class="thead-dark">
+                <tr>
+                  <th scope="col">#</th>
+                  <th scope="col">Test Name</th>
+                  <th scope="col">Doctor's Name</th>
+                </tr>
+                </thead>
+                <tbody class="left">
+                <tr *ngFor="let test of tests; let i = index">
+                  <td>{{i + 1}}</td>
+                  <td class="left">{{ test.testName }}</td>
+                  <td class="left">{{ test.testDoctor }}</td>
+                </tr>
+                </tbody>
+              </table>
+              <!--              -->
+              <button [disabled]="!addCenterForm.form.valid" class="btn btn-primary mb-2 mt-2"
+                      type="submit">Update
+              </button>
+            </form>
+          </div>
+        </div>
+
+      </div>
+    </div>
+  </div>
+</section>

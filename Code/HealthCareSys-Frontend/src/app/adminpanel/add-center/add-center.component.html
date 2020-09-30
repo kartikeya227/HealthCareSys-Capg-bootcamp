@@ -1,1 +1,101 @@
-<p>add-center works!</p>
+<app-admin-panel></app-admin-panel>
+<section class="min-vh-100" id="cover" >
+  <div id="cover-caption">
+    <div class="container">
+      <div class="row">
+        <div class=" my-5 col ">
+          <div class="card  mx-auto">
+            <h1 class="display-4 py-2 text-truncate text-center text px-2 "><b>Add Diagnostic Center</b></h1>
+            <div class="card-header text-center text-dark"><b>Add Center</b></div>
+            <form class="px-2 mt-2 " #addCenterForm="ngForm" (ngSubmit)="addCenter()">
+              <div class="text-left form-group">
+                <label class="ml-2" for="centerName"><b>Center Name</b></label>
+                <input #centerName="ngModel" [(ngModel)]="center.centerName"
+                       class="form-control"
+                       id="centerName"
+                       name="centerName"
+                       placeholder="Enter Center Name"
+                       required type="text">
+              </div>
+              <div [hidden]="centerName.valid || centerName.pristine" class="alert alert-danger">Test Center Name required.
+              </div>
+
+              <div class="text-left form-group">
+                <label class="ml-2" for="centerAddrress"><b>Center Address</b></label>
+                <input #centerAddrress="ngModel" [(ngModel)]="center.centerAddrress"
+                       class="form-control"
+                       id="centerAddrress"
+                       name="centerAddrress"
+                       placeholder="Enter Address"
+                       required type="text">
+              </div>
+              <div [hidden]="centerAddrress.valid || centerAddrress.pristine" class="alert alert-danger">Address of diagnostic center required.
+              </div>
+
+
+
+<!--         test un     -->
+              <div class="card-header text-center text-dark"><b>Add Tests</b></div>
+              <form #addTestsForm="ngForm" (ngSubmit)="addTests()">
+                <div class="text-left form-group">
+                  <label class="ml-2" for="testName"><b>Test Name</b></label>
+                  <input #testName="ngModel" [(ngModel)]="test.testName"
+                         class="form-control"
+                         id="testName"
+                         name="testName"
+                         placeholder="Enter Test Name"
+                         required type="text">
+                </div>
+                <div [hidden]="testName.valid || testName.pristine" class="alert alert-danger">Test name required.
+                </div>
+
+                <div class="text-left form-group">
+                  <label class="ml-2" for="testDoctor"><b>Age</b></label>
+                  <input #testDoctor="ngModel" [(ngModel)]="test.testDoctor"
+                         class="form-control"
+                         id="testDoctor"
+                         name="testDoctor"
+                         placeholder="Enter Doctor's Name"
+                         required type="text">
+                </div>
+                <div [hidden]="testDoctor.valid || testDoctor.pristine" class="alert alert-danger">Name of doctor required.
+                </div>
+
+
+
+                <button [disabled]="!addTestsForm.form.valid" class="btn btn-primary mb-2 mt-2"
+                        type="submit">Add Test
+                </button>
+              </form>
+              <div class="card-header left"><b>List of Tests entered till now.</b></div>
+              <table class="table table-bordered table-striped">
+                <thead class="thead-dark">
+                <tr>
+                  <th scope="col">#</th>
+                  <th scope="col">Test Name</th>
+                  <th scope="col">Doctor's Name</th>
+                </tr>
+                </thead>
+                <tbody class="left">
+                <tr *ngFor="let test of tests; let i = index">
+                  <td>{{i + 1}}</td>
+                  <td class="left">{{ test.testName }}</td>
+                  <td class="left">{{ test.testDoctor }}</td>
+                </tr>
+                </tbody>
+              </table>
+<!--              -->
+              <button [disabled]="!addCenterForm.form.valid" class="btn btn-primary mb-2 mt-2"
+                      type="submit">Add Test
+              </button>
+            </form>
+
+
+          </div>
+        </div>
+
+      </div>
+    </div>
+  </div>
+</section>
+
