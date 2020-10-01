@@ -17,7 +17,6 @@ export class AuthServiceService {
       return '';
     } else {
       this.newtoken = localStorage.getItem('token');
-      console.log('returning new token with value :-' + this.newtoken);
     }
     return this.newtoken;
   }
@@ -26,12 +25,10 @@ export class AuthServiceService {
 
     this.newtoken = token['token'];
     localStorage.setItem('token', this.newtoken);
-    console.log(jwt_decode(this.newtoken));
     this.obj = jwt_decode(this.newtoken);
     localStorage.setItem('username', this.obj['sub']);
     localStorage.setItem('role', this.obj['Role'][0]['authority']);
-    localStorage.setItem('userId',this.obj['UserId']);
-    console.log('token stored succefully!');
+    localStorage.setItem('userId', this.obj['UserId']);
   }
 
   public isLogin(): boolean {

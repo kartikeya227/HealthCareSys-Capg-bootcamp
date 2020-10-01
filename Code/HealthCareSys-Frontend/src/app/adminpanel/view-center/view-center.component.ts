@@ -20,14 +20,15 @@ export class ViewCenterComponent implements OnInit {
   addTestShow: boolean;
   tests: TestDetails[];
   test: TestDetails;
+
   constructor(private centerService: DiagnosticCenterService) {
     this.showCenters = false;
     this.showDetails = false;
     this.showUpdate = false;
     this.addTestShow = false;
     this.currentCenter = new DiagnosticCenter();
-    this.centers = new Array();
-    this.tests = new Array();
+    this.centers = [];
+    this.tests = [];
     this.test = new TestDetails();
   }
 
@@ -37,7 +38,7 @@ export class ViewCenterComponent implements OnInit {
   getCentersAll(): void {
     this.centerService.getDiagnosticCenter().subscribe(value => {
       this.centers = value;
-      if (this.centers.length > 0){
+      if (this.centers.length > 0) {
         this.showCenters = true;
         this.showDetails = false;
         this.showUpdate = false;
@@ -96,6 +97,7 @@ export class ViewCenterComponent implements OnInit {
     this.addTestShow = true;
 
   }
+
   /**
    * Method to push the details of test being added by Admin in a list.
    * resets the form every time on submission
@@ -106,8 +108,9 @@ export class ViewCenterComponent implements OnInit {
     this.test = new TestDetails();
     this.testsForm.reset();
   }
-  addTestToCenter(): void{
-    this.centerService.updateDiagnosticCenter(this.currentCenter).subscribe(value =>{
+
+  addTestToCenter(): void {
+    this.centerService.updateDiagnosticCenter(this.currentCenter).subscribe(value => {
       this.getCentersAll();
     });
   }

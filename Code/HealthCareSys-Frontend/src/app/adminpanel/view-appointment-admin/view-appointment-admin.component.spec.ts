@@ -1,6 +1,6 @@
-import { ComponentFixture, TestBed } from '@angular/core/testing';
+import {ComponentFixture, TestBed} from '@angular/core/testing';
 
-import { ViewAppointmentAdminComponent } from './view-appointment-admin.component';
+import {ViewAppointmentAdminComponent} from './view-appointment-admin.component';
 
 describe('ViewAppointmentAdminComponent', () => {
   let component: ViewAppointmentAdminComponent;
@@ -8,9 +8,9 @@ describe('ViewAppointmentAdminComponent', () => {
 
   beforeEach(async () => {
     await TestBed.configureTestingModule({
-      declarations: [ ViewAppointmentAdminComponent ]
+      declarations: [ViewAppointmentAdminComponent]
     })
-    .compileComponents();
+      .compileComponents();
   });
 
   beforeEach(() => {

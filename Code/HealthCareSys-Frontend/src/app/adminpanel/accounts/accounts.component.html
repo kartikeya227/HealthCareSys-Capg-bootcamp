@@ -1,0 +1,82 @@
+<app-admin-panel></app-admin-panel>
+<section class="min-vh-100" id="cover">
+  <div id="cover-caption">
+    <div class="container">
+      <h1 class="display-4 py-2 text-truncate text-center text-white"><b>Accounts</b></h1>
+      <div class="row">
+        <div class=" my-5 col">
+          <div class="card my-5">
+            <div class="card-header text-center text-dark"><b>List of all Accounts</b></div>
+            <table *ngIf="showAccounts" class="table table-bordered table-striped">
+              <thead class="thead-dark">
+              <tr>
+                <th scope="col">#</th>
+                <th scope="col">user Id</th>
+                <th scope="col">Full Name</th>
+              </tr>
+              </thead>
+              <tbody>
+              <tr (click)="selectAccount(i)" *ngFor="let account of accounts; let i = index" role="button">
+                <td>{{i + 1}}</td>
+                <td>{{ account.userId }}</td>
+                <td>{{ account.fullName }}</td>
+              </tr>
+              </tbody>
+            </table>
+
+          </div>
+        </div>
+
+        <div *ngIf="showDetails" class="my-5 col">
+          <div class="card my-5">
+            <div class="card-header text-center text-dark"><b>Account Details</b></div>
+            <table class="table table-bordered table-striped">
+              <tbody>
+              <tr>
+                <td>User Id</td>
+                <td>{{ currentAccount.userId }}</td>
+              </tr>
+              <tr>
+                <td>Username</td>
+                <td>{{currentAccount.username}}</td>
+              </tr>
+              <tr>
+                <td>Full Name</td>
+                <td>{{currentAccount.fullName}}</td>
+              </tr>
+              <tr>
+                <td>Email</td>
+                <td>{{currentAccount.emailId}}</td>
+              </tr>
+              <tr>
+                <td>Phone No.</td>
+                <td>{{currentAccount.contactNumber}}</td>
+              </tr>
+              <tr>
+                <td>Gender</td>
+                <td>{{currentAccount.userGender}}</td>
+              </tr>
+              <tr>
+                <td>Age</td>
+                <td>{{currentAccount.userAge}}</td>
+              </tr>
+              <tr>
+                <td>Account type</td>
+                <td *ngIf="currentAccount.userRole == 'ROLE_USER'">Customer</td>
+                <td *ngIf="currentAccount.userRole == 'ROLE_ADMIN'">Admin</td>
+              </tr>
+              </tbody>
+            </table>
+
+            <div>
+              <button (click)="deleteAccount()" class="btn btn-danger mr-2 mb-2" type="submit">Delete</button>
+
+            </div>
+          </div>
+        </div>
+
+
+      </div>
+    </div>
+  </div>
+</section>

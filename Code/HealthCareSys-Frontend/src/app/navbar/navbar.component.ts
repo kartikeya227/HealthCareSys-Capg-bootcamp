@@ -1,6 +1,6 @@
 import {Component, Input, OnInit} from '@angular/core';
 import {AuthServiceService} from '../Helper/auth-service.service';
-import construct = Reflect.construct;
+
 
 @Component({
   selector: 'app-navbar',
@@ -12,14 +12,15 @@ export class NavbarComponent implements OnInit {
   @Input() title: string;
   loginStatus: boolean;
 
-  constructor(private auth: AuthServiceService) { }
+  constructor(private auth: AuthServiceService) {
+  }
 
   logout(): void {
     localStorage.clear();
     this.ngOnInit();
   }
 
-  check(): void{
+  check(): void {
     this.ngOnInit();
   }
 

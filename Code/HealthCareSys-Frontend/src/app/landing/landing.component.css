@@ -10,14 +10,16 @@
   z-index: -1;
 }
 
-.colorheading{
+.colorheading {
   color: black;
 }
+
 .headling {
   font-size: 170px;
   color: black;
 }
-.margin{
+
+.margin {
   margin-top: 100px;
 }
 

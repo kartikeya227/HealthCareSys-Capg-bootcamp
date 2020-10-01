@@ -2,7 +2,7 @@
  * Service for User Http requests
  * userUrl = 'http://localhost:9090/user';
  */
-import { Injectable } from '@angular/core';
+import {Injectable} from '@angular/core';
 import {HttpClient, HttpHeaders} from '@angular/common/http';
 import {Observable, of, throwError} from 'rxjs';
 import {catchError, tap} from 'rxjs/operators';

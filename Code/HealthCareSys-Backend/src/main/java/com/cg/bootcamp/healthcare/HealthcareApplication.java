@@ -12,6 +12,7 @@ public class HealthcareApplication {
     public static void main(String[] args) {
         SpringApplication.run(HealthcareApplication.class, args);
     }
+
     @Bean
     public WebMvcConfigurer corsConfigurer() {
         return new WebMvcConfigurer() {

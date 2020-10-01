@@ -2,10 +2,10 @@
  * Service for Login Http request
  * bookingsUrl = 'http://localhost:9090/authenticate';
  */
-import { Injectable } from '@angular/core';
+import {Injectable} from '@angular/core';
 import {HttpClient, HttpHeaders} from '@angular/common/http';
 import {Observable, of} from 'rxjs';
-import {catchError, map, tap} from 'rxjs/operators';
+import {catchError, map} from 'rxjs/operators';
 import {LoginDetails} from '../model/login-details';
 import {AuthServiceService} from '../Helper/auth-service.service';
 

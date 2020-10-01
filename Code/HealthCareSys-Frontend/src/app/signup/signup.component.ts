@@ -16,6 +16,7 @@ export class SignupComponent implements OnInit {
   user: User;
   err: any;
   @ViewChild('adduserForm') form: any;
+
   constructor(private route: ActivatedRoute,
               private router: Router,
               private signupService: SignupService) {
@@ -25,12 +26,11 @@ export class SignupComponent implements OnInit {
   onSubmit(): void {
 
     this.signupService.addUser(this.user).subscribe(data => {
-      if (data !== undefined){
-        if (data.userId !== undefined){
+      if (data !== undefined) {
+        if (data.userId !== undefined) {
           this.goToSuccess();
         }
-      }
-      else{
+      } else {
         this.form.reset();
         alert('Account creation failed. Either username already present in database or constraints violated.');
       }
@@ -40,9 +40,10 @@ export class SignupComponent implements OnInit {
   }
 
   goToSuccess(): void {
-    this.router.navigate(['/signupsuccess']);
+    this.router.navigate(['']);
     alert('User created with the username: ' + this.user.username);
   }
+
   ngOnInit(): void {
   }
 

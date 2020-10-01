@@ -1,4 +1,4 @@
-import { Component, OnInit } from '@angular/core';
+import {Component, OnInit} from '@angular/core';
 import {User} from '../model/user';
 import {ActivatedRoute, Router} from '@angular/router';
 import {AccountService} from '../services/account.service';
@@ -14,13 +14,14 @@ export class AccountDetailsComponent implements OnInit {
   userDetailsDisplay: User;
   userId: number;
   showUpdate: boolean;
+  role: string;
 
   constructor(private route: ActivatedRoute,
               private router: Router,
               private userService: AccountService) {
     this.userDetails = new User();
     this.userDetailsDisplay = new User();
-
+    this.role = localStorage.getItem('role');
   }
 
   /**

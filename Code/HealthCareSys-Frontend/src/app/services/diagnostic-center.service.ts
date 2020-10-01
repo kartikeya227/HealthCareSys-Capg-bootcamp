@@ -2,12 +2,11 @@
  * Service for Diagnostic Center Http requests
  * userUrl = 'http://localhost:9090/center';
  */
-import { Injectable } from '@angular/core';
+import {Injectable} from '@angular/core';
 import {HttpClient, HttpHeaders} from '@angular/common/http';
 import {Observable, of, throwError} from 'rxjs';
 import {catchError, tap} from 'rxjs/operators';
 import {DiagnosticCenter} from '../model/diagnostic-center';
-import {User} from '../model/user';
 
 @Injectable({
   providedIn: 'root'

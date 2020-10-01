@@ -1,4 +1,4 @@
-import { Injectable } from '@angular/core';
+import {Injectable} from '@angular/core';
 import {HttpClient, HttpHeaders} from '@angular/common/http';
 import {Observable, of, throwError} from 'rxjs';
 import {DiagnosticCenter} from '../model/diagnostic-center';
@@ -52,7 +52,7 @@ export class AppointmentService {
     const url = `${this.appointmentUrl}/bycenter/${centerId}`;
     return this.http.get<Appointment[]>(url)
       .pipe(
-          tap(_ => this.log(`Fetched Appointments by center Id: ${centerId}`)),
+        tap(_ => this.log(`Fetched Appointments by center Id: ${centerId}`)),
         catchError(err => {
           alert('Error occurred:\nCan not get list of all Appointments from the backend.');
           this.handleError<Appointment[]>(`GET all Appointment by center Id.`);

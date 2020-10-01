@@ -1,12 +1,8 @@
 package com.cg.bootcamp.healthcare.model;
 
 import com.sun.istack.NotNull;
-import org.springframework.format.annotation.DateTimeFormat;
 
 import javax.persistence.*;
-import java.sql.Time;
-import java.text.ParseException;
-import java.text.SimpleDateFormat;
 import java.util.Date;
 
 @Entity
@@ -19,7 +15,7 @@ public class Appointment {
     private int appointmentId;
     @NotNull()
     @ManyToOne
-    @JoinColumn(name = "User_Id")
+    @JoinColumn(name = "userId")
     private User user;
     @NotNull()
     @ManyToOne
@@ -40,8 +36,13 @@ public class Appointment {
         return timestamp;
     }
 
-    public void setTimestamp(String timestamp) throws ParseException {
-        this.timestamp = new SimpleDateFormat("yyyy-MM-dd HH:mm:ss").parse(timestamp);
+//    public void setTimestamp(String timestamp) throws ParseException {
+//        this.timestamp = new SimpleDateFormat("yyyy-MM-dd HH:mm:ss").parse(timestamp);
+//    }
+
+
+    public void setTimestamp(Date timestamp) {
+        this.timestamp = timestamp;
     }
 
     public int getAppointmentId() {

@@ -1,1 +1,80 @@
-<p>add-appointment works!</p>
+<app-customer-panel></app-customer-panel>
+<section class="min-vh-100" id="cover">
+  <div id="cover-caption">
+    <div class="container">
+      <div class="row">
+        <div class=" my-5 col ">
+          <div *ngIf="!(centers.length>0)">
+            <div class="alert alert-danger">No Diagnostic Centers present in the system to book a test.
+            </div>
+          </div>
+          <div *ngIf="centers.length>0" class="card  mx-auto">
+            <h1 class="display-4 py-2 text-truncate text-center text px-2 "><b>Book an Appointment</b></h1>
+            <div class="card-header text-center text-dark"><b>Fill the appointment details</b></div>
+            <form #addAppointmentForm="ngForm" (ngSubmit)="makeAppointment()" class="px-2 mt-2 ">
+              <div class="text-left form-group">
+                <label class="ml-2" for="timestamp"><b>Appointment Time</b></label>
+                <input #timestamp="ngModel" [(ngModel)]="appointment.timestamp"
+                       class="form-control"
+                       id="timestamp"
+                       name="timestamp"
+                       required type="datetime-local">
+              </div>
+              <div [hidden]="timestamp.valid || timestamp.pristine" class="alert alert-danger">Date and time required.
+              </div>
+
+              <div class="text-left form-group">
+                <div class="dropdown">
+                  <button aria-expanded="false" aria-haspopup="true" class="btn btn-secondary dropdown-toggle mt-2 mb-2"
+                          data-toggle="dropdown" id="dropdownMenu2" type="button">
+                    Diagnostic Centers
+                  </button>
+                  <div aria-labelledby="dropdownMenu2" class="dropdown-menu">
+                    <button (click)="choiceCenter(i)" *ngFor="let center of centers; let i = index"
+                            class="dropdown-item" type="button">{{center.centerName}}</button>
+                  </div>
+                </div>
+              </div>
+              <div [hidden]="!(centers.length==0)" class="alert alert-danger">No Diagnostic Center available in the
+                system.
+              </div>
+              <div [hidden]="!(selectedCenter.centerId == 0)" class="alert alert-danger">Select a Diagnostic Center.
+              </div>
+              <div [hidden]="(selectedCenter.centerId == 0)" class="alert alert-success">{{selectedCenter.centerName}}&nbsp;is
+                selected.
+              </div>
+
+              <div class="text-left form-group">
+                <div class="dropdown">
+                  <button aria-expanded="false" aria-haspopup="true" class="btn btn-secondary dropdown-toggle mt-2 mb-2"
+                          data-toggle="dropdown" id="dropdownMenu1" type="button">
+                    Tests
+                  </button>
+                  <div aria-labelledby="dropdownMenu1" class="dropdown-menu">
+                    <button (click)="choiceTest(i)" *ngFor="let testDetails of selectedCenter.testList; let i = index"
+                            class="dropdown-item" type="button">{{testDetails.testName}}</button>
+                  </div>
+                </div>
+              </div>
+              <div [hidden]="!(selectedTest.testId == 0)" class="alert alert-danger">Select a test.
+              </div>
+              <div [hidden]="(selectedTest.testId == 0)" class="alert alert-success">{{selectedTest.testName}}&nbsp;is
+                selected.
+              </div>
+              <button
+                [disabled]="!addAppointmentForm.form.valid || selectedTest.testId == 0 || selectedCenter.centerId == 0"
+                class="btn btn-primary mb-2 mt-2"
+                type="submit">Book Appointment
+              </button>
+            </form>
+
+
+          </div>
+        </div>
+
+      </div>
+    </div>
+  </div>
+</section>
+
+

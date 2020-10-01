@@ -1,4 +1,5 @@
-<app-admin-panel></app-admin-panel>
+<app-admin-panel *ngIf="role == 'ROLE_ADMIN'"></app-admin-panel>
+<app-customer-panel *ngIf="role == 'ROLE_USER'"></app-customer-panel>
 <section class="min-vh-100" id="cover">
   <div id="cover-caption">
     <div class="container">

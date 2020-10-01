@@ -5,15 +5,14 @@ import org.junit.jupiter.api.Test;
 import org.springframework.http.*;
 import org.springframework.web.client.RestTemplate;
 
-import java.sql.Time;
 import java.util.Collections;
 import java.util.HashMap;
 import java.util.Map;
 
 class AppointmentControllerTest {
 
-    String jwtTokenUser = "Bearer "+"eyJhbGciOiJIUzUxMiJ9.eyJSb2xlIjpbeyJhdXRob3JpdHkiOiJST0xFX1VTRVIifV0sInN1YiI6InNoYW0iLCJleHAiOjE2MDE0MDM1MzcsImlhdCI6MTYwMTM4NTUzN30.D6FZ0SZB42SNAL0Cc-b5WoDApwTdG0WproHUJj8L8dWcwuqIkd5RZJBw-yfxBop9kzw7_kSW2FclEQhZ52-KNQ";
-    String jwtTokenAdmin = "Bearer "+"eyJhbGciOiJIUzUxMiJ9.eyJSb2xlIjpbeyJhdXRob3JpdHkiOiJST0xFX0FETUlOIn1dLCJzdWIiOiJyYW0iLCJleHAiOjE2MDEzNDMyNzAsImlhdCI6MTYwMTMyNTI3MH0.3OkUhsnIM7Na76hRPtuMoNPGr6J7W0HhkqnYVM443055wc8Z8KzXlFenxb1aC3_CJEOmaBfTn7yf0CIHDMSmvg";
+    String jwtTokenUser = "Bearer " + "eyJhbGciOiJIUzUxMiJ9.eyJSb2xlIjpbeyJhdXRob3JpdHkiOiJST0xFX1VTRVIifV0sInN1YiI6InNoYW0iLCJleHAiOjE2MDE0MDM1MzcsImlhdCI6MTYwMTM4NTUzN30.D6FZ0SZB42SNAL0Cc-b5WoDApwTdG0WproHUJj8L8dWcwuqIkd5RZJBw-yfxBop9kzw7_kSW2FclEQhZ52-KNQ";
+    String jwtTokenAdmin = "Bearer " + "eyJhbGciOiJIUzUxMiJ9.eyJSb2xlIjpbeyJhdXRob3JpdHkiOiJST0xFX0FETUlOIn1dLCJzdWIiOiJyYW0iLCJleHAiOjE2MDEzNDMyNzAsImlhdCI6MTYwMTMyNTI3MH0.3OkUhsnIM7Na76hRPtuMoNPGr6J7W0HhkqnYVM443055wc8Z8KzXlFenxb1aC3_CJEOmaBfTn7yf0CIHDMSmvg";
     RestTemplate template;
 
     @BeforeEach

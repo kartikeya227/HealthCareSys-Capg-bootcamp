@@ -1,5 +1,5 @@
 <app-admin-panel></app-admin-panel>
-<section class="min-vh-100" id="cover" >
+<section class="min-vh-100" id="cover">
   <div id="cover-caption">
     <div class="container">
       <div class="row">
@@ -7,7 +7,7 @@
           <div class="card  mx-auto">
             <h1 class="display-4 py-2 text-truncate text-center text px-2 "><b>Add Diagnostic Center</b></h1>
             <div class="card-header text-center text-dark"><b>Add Center</b></div>
-            <form class="px-2 mt-2 " #addCenterForm="ngForm" (ngSubmit)="addCenter()">
+            <form #addCenterForm="ngForm" (ngSubmit)="addCenter()" class="px-2 mt-2 ">
               <div class="text-left form-group">
                 <label class="ml-2" for="centerName"><b>Center Name</b></label>
                 <input #centerName="ngModel" [(ngModel)]="center.centerName"
@@ -17,7 +17,8 @@
                        placeholder="Enter Center Name"
                        required type="text">
               </div>
-              <div [hidden]="centerName.valid || centerName.pristine" class="alert alert-danger">Test Center Name required.
+              <div [hidden]="centerName.valid || centerName.pristine" class="alert alert-danger">Test Center Name
+                required.
               </div>
 
               <div class="text-left form-group">
@@ -29,12 +30,12 @@
                        placeholder="Enter Address"
                        required type="text">
               </div>
-              <div [hidden]="centerAddrress.valid || centerAddrress.pristine" class="alert alert-danger">Address of diagnostic center required.
+              <div [hidden]="centerAddrress.valid || centerAddrress.pristine" class="alert alert-danger">Address of
+                diagnostic center required.
               </div>
 
 
-
-<!--         test un     -->
+              <!--         test un     -->
               <div class="card-header text-center text-dark"><b>Add Tests</b></div>
               <form #addTestsForm="ngForm" (ngSubmit)="addTests()">
                 <div class="text-left form-group">
@@ -50,7 +51,7 @@
                 </div>
 
                 <div class="text-left form-group">
-                  <label class="ml-2" for="testDoctor"><b>Age</b></label>
+                  <label class="ml-2" for="testDoctor"><b>Doctor's Name</b></label>
                   <input #testDoctor="ngModel" [(ngModel)]="test.testDoctor"
                          class="form-control"
                          id="testDoctor"
@@ -58,9 +59,9 @@
                          placeholder="Enter Doctor's Name"
                          required type="text">
                 </div>
-                <div [hidden]="testDoctor.valid || testDoctor.pristine" class="alert alert-danger">Name of doctor required.
+                <div [hidden]="testDoctor.valid || testDoctor.pristine" class="alert alert-danger">Name of doctor
+                  required.
                 </div>
-
 
 
                 <button [disabled]="!addTestsForm.form.valid" class="btn btn-primary mb-2 mt-2"
@@ -84,9 +85,9 @@
                 </tr>
                 </tbody>
               </table>
-<!--              -->
+              <!--              -->
               <button [disabled]="!addCenterForm.form.valid" class="btn btn-primary mb-2 mt-2"
-                      type="submit">Add Test
+                      type="submit">Add Center
               </button>
             </form>
 

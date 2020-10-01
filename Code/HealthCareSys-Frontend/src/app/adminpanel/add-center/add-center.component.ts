@@ -20,7 +20,7 @@ export class AddCenterComponent implements OnInit {
   constructor(private route: ActivatedRoute,
               private router: Router,
               private centerService: DiagnosticCenterService) {
-    this.tests = new Array();
+    this.tests = [];
     this.test = new TestDetails();
     this.center = new DiagnosticCenter();
   }
@@ -34,9 +34,10 @@ export class AddCenterComponent implements OnInit {
     this.test = new TestDetails();
     this.testsForm.reset();
   }
-  addCenter(): void{
+
+  addCenter(): void {
     this.center.testList = this.tests;
-    this.centerService.addDiagnosticCenter(this.center).subscribe(value =>{
+    this.centerService.addDiagnosticCenter(this.center).subscribe(value => {
       alert('new center made\n' + value);
       this.router.navigate(['viewcenter']);
     });

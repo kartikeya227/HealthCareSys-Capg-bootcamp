@@ -33,7 +33,7 @@ public class AppointmentController {
     }
 
     /**
-     *Http Method : GET
+     * Http Method : GET
      * Returns a list of all the appointments made by a particular user.
      * If no appointment is made by the user returns a empty list.
      * Takes user Id as input through path variable
@@ -45,7 +45,7 @@ public class AppointmentController {
     }
 
     /**
-     *Http Method : GET
+     * Http Method : GET
      * Returns a list of all the appointments made under a particular diagnostic center.
      * If no appointment is made under particular diagnostic center returns a empty list.
      * Takes user Id as input through path variable
@@ -57,7 +57,7 @@ public class AppointmentController {
     }
 
     /**
-     *Http Method : GET
+     * Http Method : GET
      * Returns a single appointment by searching appointments table with appointment id.
      * If no appointment is present with that appointment id then return a error msg..
      * Takes user Id as input through path variable.

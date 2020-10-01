@@ -1,6 +1,6 @@
 <nav class="navbar navbar-light bg-transparent justify-content-between z">
   <a class="navbar-brand text" routerLink="/adminpanel">
-    <img alt="" class="d-inline-block align-top" height="30" src="../../assets/images/namaste.png" width="30">
+    <img alt="" class="d-inline-block align-top" height="30" src="../../assets/images/user.png" width="26">
     Welcome&nbsp;{{username}}
   </a>
 
@@ -9,12 +9,13 @@
     </button>
     <button class="btn btn-outline-success my-2 my-sm-0 mr-1" routerLink="/viewcenter" type="submit">Centers
     </button>
-    <button class="btn btn-outline-success my-2 my-sm-0 mr-1" routerLink="/viewappointmentadmin" type="submit">Appointment
+    <button class="btn btn-outline-success my-2 my-sm-0 mr-1" routerLink="/viewappointmentadmin" type="submit">
+      Appointment
     </button>
-    <button class="btn btn-outline-success my-2 my-sm-0 mr-1" routerLink="/accountdetailsadmin" type="submit">Account
+    <button class="btn btn-outline-success my-2 my-sm-0 mr-1" routerLink="/accounts" type="submit">Accounts
     </button>
-    <button class="btn btn-outline-success my-2 my-sm-0 mr-1" routerLink="/adminpanel" type="submit">
-      Welcome
+    <button class="btn btn-outline-success my-2 my-sm-0 mr-1 text" routerLink="/accountdetailsadmin"
+            type="submit">{{username}}
     </button>
   </form>
 </nav>

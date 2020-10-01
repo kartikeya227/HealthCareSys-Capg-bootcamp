@@ -6,22 +6,26 @@
       <div class="row">
         <div class=" my-5 col">
           <div class="card my-5">
-            <div *ngIf="showCenters"class="card-header text-center text-dark"><b>Select a Diagnostic center to view appointments under it.</b></div>
-            <div  class="dropdown">
-                <button class="btn btn-secondary dropdown-toggle mt-2 mb-2" type="button" id="dropdownMenu2" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
-                  Diagnostic Centers
-                </button>
-                <div class="dropdown-menu" aria-labelledby="dropdownMenu2">
-                  <button (click)="selectCenter(i)" *ngFor="let center of centers; let i = index"
-                          class="dropdown-item" type="button">{{center.centerName}}</button>
-                </div>
+            <div *ngIf="showCenters" class="card-header text-center text-dark"><b>Select a Diagnostic center to view
+              appointments under it.</b></div>
+            <div class="dropdown">
+              <button aria-expanded="false" aria-haspopup="true" class="btn btn-secondary dropdown-toggle mt-2 mb-2"
+                      data-toggle="dropdown" id="dropdownMenu2" type="button">
+                Diagnostic Centers
+              </button>
+              <div aria-labelledby="dropdownMenu2" class="dropdown-menu">
+                <button (click)="selectCenter(i)" *ngFor="let center of centers; let i = index"
+                        class="dropdown-item" type="button">{{center.centerName}}</button>
               </div>
+            </div>
           </div>
           <div *ngIf="!showAppointments && currentCenter!=null" class="card my-5">
-            <div  class="card-header text-center text-dark"><b>No appointments made at&nbsp;{{currentCenter.centerName}}</b></div>
+            <div class="card-header text-center text-dark"><b>No appointments made
+              at&nbsp;{{currentCenter.centerName}}</b></div>
           </div>
           <div *ngIf="showAppointments" class="card my-5">
-            <div  class="card-header text-center text-dark"><b>List of all Appointments for Center: &nbsp;{{currentCenter.centerName}}</b></div>
+            <div class="card-header text-center text-dark"><b>List of all Appointments for Center:
+              &nbsp;{{currentCenter.centerName}}</b></div>
             <table class="table table-bordered table-striped">
               <thead class="thead-dark">
               <tr>
@@ -32,7 +36,8 @@
               </tr>
               </thead>
               <tbody>
-              <tr role="button" (click)="showAppointmentDetails(i)" *ngFor="let appointment of appointments; let i = index">
+              <tr (click)="showAppointmentDetails(i)" *ngFor="let appointment of appointments; let i = index"
+                  role="button">
                 <td>{{i + 1}}</td>
                 <td>{{ appointment.appointmentId }}</td>
                 <td>{{ appointment.user.fullName}}</td>
@@ -70,8 +75,12 @@
                 <td>{{currentAppointment.diagnosticCenter.centerAddrress}}</td>
               </tr>
               <tr>
+                <td>Date</td>
+                <td>{{ date }}</td>
+              </tr>
+              <tr>
                 <td>Time</td>
-                <td>{{currentAppointment.timestamp}}</td>
+                <td>{{ time }}</td>
               </tr>
               <tr>
                 <td>Status</td>

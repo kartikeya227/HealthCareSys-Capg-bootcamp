@@ -1,6 +1,6 @@
-import { ComponentFixture, TestBed } from '@angular/core/testing';
+import {ComponentFixture, TestBed} from '@angular/core/testing';
 
-import { ViewAppointmentCustomerComponent } from './view-appointment-customer.component';
+import {ViewAppointmentCustomerComponent} from './view-appointment-customer.component';
 
 describe('ViewAppointmentCustomerComponent', () => {
   let component: ViewAppointmentCustomerComponent;
@@ -8,9 +8,9 @@ describe('ViewAppointmentCustomerComponent', () => {
 
   beforeEach(async () => {
     await TestBed.configureTestingModule({
-      declarations: [ ViewAppointmentCustomerComponent ]
+      declarations: [ViewAppointmentCustomerComponent]
     })
-    .compileComponents();
+      .compileComponents();
   });
 
   beforeEach(() => {

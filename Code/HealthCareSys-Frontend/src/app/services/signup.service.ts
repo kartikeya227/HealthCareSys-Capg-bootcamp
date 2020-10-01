@@ -2,7 +2,7 @@
  * Service for User Http requests
  * userUrl = 'http://localhost:9090/register';
  */
-import { Injectable } from '@angular/core';
+import {Injectable} from '@angular/core';
 import {HttpClient, HttpHeaders} from '@angular/common/http';
 import {User} from '../model/user';
 import {Observable, of} from 'rxjs';
@@ -18,7 +18,8 @@ export class SignupService {
   };
   private userUrl = 'http://localhost:9090/register';  // URL to web api
 
-  constructor(private http: HttpClient) { }
+  constructor(private http: HttpClient) {
+  }
 
   /** POST: add a new User to the server */
   addUser(user: User): Observable<User> {
@@ -48,7 +49,7 @@ export class SignupService {
     };
   }
 
-  private log(message: string): void{
+  private log(message: string): void {
     console.log('Server message:' + message);
   }
 }

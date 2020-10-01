@@ -1,6 +1,6 @@
-import { ComponentFixture, TestBed } from '@angular/core/testing';
+import {ComponentFixture, TestBed} from '@angular/core/testing';
 
-import { AdminPanelLandingComponent } from './admin-panel-landing.component';
+import {AdminPanelLandingComponent} from './admin-panel-landing.component';
 
 describe('AdminPanelLandingComponent', () => {
   let component: AdminPanelLandingComponent;
@@ -8,9 +8,9 @@ describe('AdminPanelLandingComponent', () => {
 
   beforeEach(async () => {
     await TestBed.configureTestingModule({
-      declarations: [ AdminPanelLandingComponent ]
+      declarations: [AdminPanelLandingComponent]
     })
-    .compileComponents();
+      .compileComponents();
   });
 
   beforeEach(() => {

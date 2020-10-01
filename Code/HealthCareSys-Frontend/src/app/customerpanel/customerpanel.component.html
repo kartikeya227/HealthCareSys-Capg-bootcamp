@@ -1,1 +1,19 @@
-<p>customerpanel works!</p>
+<nav class="navbar navbar-light bg-transparent justify-content-between z">
+  <a class="navbar-brand text" routerLink="/userpanel">
+    <img alt="" class="d-inline-block align-top" height="30" src="../../assets/images/user.png" width="26">
+    Welcome&nbsp;{{username}}
+  </a>
+  <form class="form-inline">
+    <button class="btn btn-outline-success my-2 my-sm-0 mr-1" routerLink="/addappointment" type="submit">Make
+      Appointment
+    </button>
+    <button class="btn btn-outline-success my-2 my-sm-0 mr-1" routerLink="/viewappointmentcustomer" type="submit">View
+      Appointments
+    </button>
+    <button class="btn btn-outline-success my-2 my-sm-0 mr-1 text" routerLink="/accountdetailscustomer"
+            type="submit">{{username}}
+    </button>
+  </form>
+</nav>
+
+

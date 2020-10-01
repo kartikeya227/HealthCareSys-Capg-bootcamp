@@ -1,4 +1,4 @@
-import { Component, OnInit } from '@angular/core';
+import {Component, OnInit} from '@angular/core';
 import {DiagnosticCenter} from '../../model/diagnostic-center';
 import {Appointment} from '../../model/appointment';
 import {AppointmentService} from '../../services/appointment.service';
@@ -18,11 +18,15 @@ export class ViewAppointmentAdminComponent implements OnInit {
   showCenters: boolean;
   showAppointments: boolean;
   currentCenter: DiagnosticCenter;
+  date: string;
+  time: string;
+  dateIn: Date;
+
   constructor(private centerService: DiagnosticCenterService,
               private appointmentService: AppointmentService) {
-    this.centers = new Array();
+    this.centers = [];
     this.currentAppointment = new Appointment();
-    this.appointments = new Array();
+    this.appointments = [];
     this.showDetails = false;
     this.showCenters = false;
     this.showAppointments = false;
@@ -32,13 +36,13 @@ export class ViewAppointmentAdminComponent implements OnInit {
   getCenters(): void {
     this.centerService.getDiagnosticCenter().subscribe(value => {
       this.centers = value;
-      if (this.centers.length > 0){
+      if (this.centers.length > 0) {
         this.showCenters = true;
       }
     });
   }
 
-  selectCenter(i: number): void{
+  selectCenter(i: number): void {
     this.currentCenter = this.centers[i];
     this.getAppointments(this.currentCenter.centerId);
     this.showDetails = false;
@@ -48,30 +52,34 @@ export class ViewAppointmentAdminComponent implements OnInit {
     this.appointmentService.getALLAppointmentByCenter(centerId).subscribe(value => {
       this.showAppointments = false;
       this.appointments = value;
-      if (this.appointments.length > 0){
+      if (this.appointments.length > 0) {
         this.showAppointments = true;
       }
     });
   }
 
-  showAppointmentDetails(i: number): void{
+  showAppointmentDetails(i: number): void {
     this.currentAppointment = this.appointments[i];
     this.showDetails = true;
+    this.dateIn = new Date(this.currentAppointment.timestamp);
+    this.date = this.dateIn.getDate() + '/' + (this.dateIn.getMonth() + 1) + '/' + this.dateIn.getFullYear();
+    this.time = this.dateIn.getHours() + ':' + this.dateIn.getMinutes();
   }
 
-  deleteAppointment(): void{
+  deleteAppointment(): void {
     this.appointmentService.deleteAppointment(this.currentAppointment.appointmentId).subscribe(value => {
       this.getAppointments(this.currentCenter.centerId);
       this.showDetails = false;
     });
   }
 
-  authorizeAppointment(): void{
+  authorizeAppointment(): void {
     this.appointmentService.authorizeAppointment(this.currentAppointment).subscribe(value => {
       this.getAppointments(this.currentCenter.centerId);
       this.showDetails = false;
     });
   }
+
   ngOnInit(): void {
     this.getCenters();
   }

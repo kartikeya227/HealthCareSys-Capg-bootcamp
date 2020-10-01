@@ -1,6 +1,6 @@
-import { ComponentFixture, TestBed } from '@angular/core/testing';
+import {ComponentFixture, TestBed} from '@angular/core/testing';
 
-import { ViewCenterComponent } from './view-center.component';
+import {ViewCenterComponent} from './view-center.component';
 
 describe('ViewCenterComponent', () => {
   let component: ViewCenterComponent;
@@ -8,9 +8,9 @@ describe('ViewCenterComponent', () => {
 
   beforeEach(async () => {
     await TestBed.configureTestingModule({
-      declarations: [ ViewCenterComponent ]
+      declarations: [ViewCenterComponent]
     })
-    .compileComponents();
+      .compileComponents();
   });
 
   beforeEach(() => {
